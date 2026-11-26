@@ -62,13 +62,14 @@ export default function ScrollSequence({
           const count = mobile ? mobileFrames : frames;
           const folder = mobile ? `${name}-mobile` : name;
           const state = { frame: 0 };
-          let drawn = -1;
+          let drawn = -1; // frame index currently on the canvas
+          let wanted = -1; // frame index the scroll position asks for
+          let lastIdx = 0;
           let raf = 0;
+          const maxW = mobile ? 960 : 1920; // frames' real width — no point drawing bigger
 
-          const draw = (force = false) => {
-            const idx = Math.min(count - 1, Math.max(0, Math.round(state.frame)));
-            if (!force && idx === drawn) return;
-            const img = loader.nearest(idx);
+          const paint = (i) => {
+            const img = loader.images[i];
             if (!img) return;
             const cw = canvas.width;
             const ch = canvas.height;
@@ -78,19 +79,33 @@ export default function ScrollSequence({
             const w = iw * scale;
             const h = ih * scale;
             c2d.drawImage(img, (cw - w) / 2, (ch - h) / 2, w, h);
-            drawn = loader.images[idx] ? idx : -1; // redraw later if we used a stand-in
+            loader.touch(i);
+            drawn = i;
             canvas.style.opacity = "1";
           };
-          const requestDraw = (force) => {
+
+          const draw = (force = false) => {
+            const idx = Math.min(count - 1, Math.max(0, Math.round(state.frame)));
+            wanted = idx;
+            const dir = idx >= lastIdx ? 1 : -1;
+            lastIdx = idx;
+            loader.warm(idx, dir); // decode upcoming frames off the main thread
+            const ready = loader.nearestReady(idx); // never block on a sync decode
+            if (ready < 0 || (!force && ready === drawn)) return;
+            paint(ready);
+          };
+          const requestDraw = () => {
             cancelAnimationFrame(raf);
-            raf = requestAnimationFrame(() => draw(force));
+            raf = requestAnimationFrame(() => draw(true));
           };
 
           const resize = () => {
             const dpr = Math.min(window.devicePixelRatio || 1, mobile ? 1.5 : 2);
             const { clientWidth, clientHeight } = canvas;
-            canvas.width = Math.max(1, Math.round(clientWidth * dpr));
-            canvas.height = Math.max(1, Math.round(clientHeight * dpr));
+            // Cap the backing store at the source resolution (cover-fit keeps aspect).
+            const scale = Math.min(dpr, maxW / Math.max(1, clientWidth));
+            canvas.width = Math.max(1, Math.round(clientWidth * Math.max(scale, 0.5)));
+            canvas.height = Math.max(1, Math.round(clientHeight * Math.max(scale, 0.5)));
             c2d.imageSmoothingQuality = "high";
             draw(true);
           };
@@ -100,9 +115,9 @@ export default function ScrollSequence({
             src: (i) => frameUrl(`/frames/${folder}/frame_${pad(i + 1)}.webp`),
             priority: 30,
             concurrency: mobile ? 4 : 6,
+            // A frame became ready: repaint if it is closer to what we want than what's shown.
             onFrame: (i) => {
-              const cur = Math.round(state.frame);
-              if (i === cur || drawn === -1) requestDraw(true);
+              if (drawn === -1 || (wanted >= 0 && Math.abs(i - wanted) < Math.abs(drawn - wanted))) requestDraw();
             },
             onPriorityProgress: reportProgress
               ? (p) => (p >= 1 ? loaderStore.finish() : loaderStore.setProgress(p))

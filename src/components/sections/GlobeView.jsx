@@ -41,7 +41,18 @@ export default function GlobeView({ country, origin }) {
     const el = wrapRef.current;
     const ro = new ResizeObserver(([e]) => setSize({ w: e.contentRect.width, h: e.contentRect.height }));
     ro.observe(el);
-    return () => ro.disconnect();
+    // Stop rendering WebGL while the globe is off screen (saves GPU for scrolling).
+    const io = new IntersectionObserver(([e]) => {
+      const g = globeRef.current;
+      if (!g) return;
+      if (e.isIntersecting) g.resumeAnimation?.();
+      else g.pauseAnimation?.();
+    });
+    io.observe(el);
+    return () => {
+      ro.disconnect();
+      io.disconnect();
+    };
   }, []);
 
   // Fly the camera between India and the active destination.
