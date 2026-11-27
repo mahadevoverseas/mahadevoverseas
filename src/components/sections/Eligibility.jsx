@@ -70,8 +70,8 @@ export default function Eligibility() {
       <div className="relative mx-auto grid max-w-[1440px] gap-12 px-5 md:px-10 lg:grid-cols-12 lg:gap-16">
         <div className="lg:col-span-5">
           <p className="eyebrow mb-5 text-brand-cyan">{eligibility.eyebrow}</p>
-          <SplitReveal className="font-display text-[clamp(2.8rem,7vw,6rem)] text-ink">
-            <span id="elig-title">{eligibility.title}</span>
+          <SplitReveal id="elig-title" className="font-display text-[clamp(2.8rem,7vw,6rem)] text-ink">
+            {eligibility.title}
           </SplitReveal>
           <p className="mt-6 max-w-md text-muted">{eligibility.intro}</p>
           <p className="mt-8 flex max-w-md gap-3 rounded-[10px] border border-white/10 bg-card/60 p-4 text-xs leading-relaxed text-muted">

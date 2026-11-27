@@ -1,5 +1,7 @@
 export default function JsonLd({ content }) {
-  const { site, contact, countries } = content;
+  const { site, contact, countries, owner } = content;
+  // Only describe the founder once real details are filled in (no [placeholders]).
+  const hasOwner = owner?.name && !/\[.*\]/.test(owner.name);
   const data = {
     "@context": "https://schema.org",
     "@type": ["EducationalOrganization", "LocalBusiness"],
@@ -27,6 +29,9 @@ export default function JsonLd({ content }) {
     areaServed: { "@type": "Country", name: "India" },
     knowsAbout: countries.map((c) => `Study in ${c.name}`),
     sameAs: contact.socials.map((s) => s.href),
+    ...(hasOwner && {
+      founder: { "@type": "Person", name: owner.name, jobTitle: owner.role, ...(owner.photo?.startsWith("http") && { image: owner.photo }) },
+    }),
   };
   return (
     <script

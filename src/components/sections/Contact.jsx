@@ -65,8 +65,8 @@ export default function Contact() {
       <div className="relative mx-auto grid max-w-[1440px] gap-14 px-5 md:px-10 lg:grid-cols-12 lg:gap-16">
         <div className="lg:col-span-5">
           <p className="eyebrow mb-5 text-brand-cyan">{contactSection.eyebrow}</p>
-          <SplitReveal className="font-display text-[clamp(2.8rem,7vw,6rem)] text-ink">
-            <span id="contact-title">{contactSection.title}</span>
+          <SplitReveal id="contact-title" className="font-display text-[clamp(2.8rem,7vw,6rem)] text-ink">
+            {contactSection.title}
           </SplitReveal>
           <p className="mt-6 max-w-md text-muted">{contactSection.intro}</p>
 

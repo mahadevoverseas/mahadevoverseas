@@ -8,7 +8,7 @@ import { onIntro } from "@/lib/loader-store";
  * Headline that reveals line by line, each line sliding up from a mask.
  * `trigger="intro"` plays right after the loader; default plays on scroll.
  */
-export default function SplitReveal({ as: Tag = "h2", children, className = "", delay = 0, trigger = "scroll", start = "top 85%" }) {
+export default function SplitReveal({ as: Tag = "h2", children, className = "", delay = 0, trigger = "scroll", start = "top 85%", id }) {
   const ref = useRef(null);
 
   useGSAP(
@@ -46,7 +46,7 @@ export default function SplitReveal({ as: Tag = "h2", children, className = "", 
   );
 
   return (
-    <Tag ref={ref} className={className}>
+    <Tag ref={ref} id={id} className={className}>
       {children}
     </Tag>
   );

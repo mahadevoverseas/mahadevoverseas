@@ -132,6 +132,41 @@ export const about = {
   signature: "— Team Mahadev Overseas",
 };
 
+/* ---------------- FOUNDER / OWNER ---------------- */
+// TODO: PLACEHOLDER — replace with the real founder's name, photo, story,
+// numbers and credentials (Admin → Founder). Only list facts you can verify.
+export const owner = {
+  "eyebrow": "Meet the founder",
+  "name": "[Founder name]",
+  "role": "Founder & Director, Mahadev Overseas",
+  "photo": "/images/owner.svg",
+  "bio": [
+    "[Write 2–3 short paragraphs in the founder's own voice: where they are from, how they got into overseas education, and why they started Mahadev Overseas.]",
+    "[What makes their guidance different — for example: honest advice on what fits a student's marks and budget, personally reviewing every visa file, staying in touch after the student lands.]"
+  ],
+  "quote": "[A short quote from the founder about how they guide students]",
+  "highlights": [
+    {
+      "value": "10+",
+      "label": "Years in overseas education"
+    },
+    {
+      "value": "500+",
+      "label": "Students guided abroad"
+    },
+    {
+      "value": "7",
+      "label": "Study destinations"
+    }
+  ],
+  "credentials": [
+    "[Qualification or certification, e.g. degree / counsellor training]",
+    "[Memberships or partnerships you can verify]"
+  ],
+  "ctaLabel": "Book a session with the founder",
+  "ctaHref": "/contact"
+};
+
 /* ---------------- COUNTRIES ---------------- */
 // TODO: verify every figure below against official sources before launch —
 // tuition and post-study work rules change often.
@@ -574,6 +609,7 @@ export const defaultContent = {
   hero,
   stats,
   about,
+  owner,
   origin,
   countriesSection,
   countries,

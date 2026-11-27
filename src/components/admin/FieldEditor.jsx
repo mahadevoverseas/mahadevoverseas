@@ -8,7 +8,7 @@ import { SERVICE_ICON_NAMES, SERVICE_ICONS } from "@/lib/service-icons";
 
 const LONG_KEYS = new Set([
   "paragraph", "text", "quote", "description", "blurb", "legal", "disclaimer", "intro", "work",
-  "footnote", "note", "message", "whatsappMessage", "overview", "successMessage",
+  "footnote", "note", "message", "whatsappMessage", "overview", "successMessage", "bio",
 ]);
 const IMAGE_KEYS = new Set(["photo", "logo", "image"]);
 
@@ -29,6 +29,10 @@ const HINTS = {
   enabled: "Show or hide this element.",
   video: "Optional MP4/WebM video (max 100 MB). When set, the tile plays this video; the image is used as its cover.",
   category: "Used for the filter buttons on the gallery page.",
+  bio: "One box per paragraph. Write in the founder's own voice.",
+  highlights: "Short facts shown as big numbers. Only use figures you can back up.",
+  credentials: "Qualifications, trainings or memberships — only ones you can verify.",
+  photo: "A clear, well-lit portrait works best (portrait shape, at least 800 px wide).",
 };
 
 export function humanize(key) {

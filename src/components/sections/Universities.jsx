@@ -48,9 +48,9 @@ export default function Universities() {
     <section aria-labelledby="unis-title" className="relative overflow-hidden bg-paper py-24 text-navy md:py-32">
       <div className="mx-auto mb-12 max-w-[1440px] px-5 text-center md:mb-16 md:px-10">
         <p className="eyebrow mb-5 text-red-strong">{universities.eyebrow}</p>
-        <SplitReveal className="font-display text-[clamp(2.4rem,6vw,5rem)]">
-          <span id="unis-title">{universities.title}</span>
-        </SplitReveal>
+        <SplitReveal id="unis-title" className="font-display text-[clamp(2.4rem,6vw,5rem)]">
+            {universities.title}
+          </SplitReveal>
       </div>
       <div className="flex flex-col gap-4">
         <Row items={universities.rowOne} duration="50s" />

@@ -1,5 +1,6 @@
 import PageHeader from "@/components/ui/PageHeader";
 import About from "@/components/sections/About";
+import Owner from "@/components/sections/Owner";
 import Stats from "@/components/sections/Stats";
 import Universities from "@/components/sections/Universities";
 import CtaBand from "@/components/ui/CtaBand";
@@ -11,6 +12,7 @@ export default function AboutPage() {
     <>
       <PageHeader page="about" image="/frames/journey/frame_0400.webp" />
       <About />
+      <Owner />
       <Stats />
       <Universities />
       <CtaBand />

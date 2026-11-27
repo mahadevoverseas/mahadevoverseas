@@ -33,3 +33,12 @@ test("country card leads to its detail page", async ({ page }) => {
   await page.getByRole("link", { name: /Canada/ }).first().click();
   await expect(page).toHaveURL(/\/countries\/canada$/);
 });
+
+test("about page introduces the founder", async ({ page }) => {
+  await page.goto("/about");
+  const founder = page.locator('section[aria-labelledby="owner-name"]');
+  await expect(founder).toBeAttached();
+  await expect(founder.getByText(/meet the founder/i)).toBeAttached();
+  await expect(founder.locator("img")).toHaveAttribute("alt", /.+/);
+  await expect(founder.getByRole("link", { name: /founder/i })).toHaveAttribute("href", "/contact");
+});

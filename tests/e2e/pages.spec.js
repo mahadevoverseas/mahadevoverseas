@@ -21,6 +21,15 @@ for (const path of PAGES) {
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
     expect(overflow).toBeLessThanOrEqual(1);
 
+    // Every section labelled by a heading points at a heading that has text.
+    const brokenLabels = await page.evaluate(() =>
+      [...document.querySelectorAll("[aria-labelledby]")]
+        .filter((el) => el.checkVisibility?.() !== false)
+        .map((el) => el.getAttribute("aria-labelledby"))
+        .filter((id) => !document.getElementById(id)?.textContent.trim())
+    );
+    expect(brokenLabels).toEqual([]);
+
     // Every image has alt text (empty alt is fine for decorative images).
     expect(await page.locator("img:not([alt])").count()).toBe(0);
 

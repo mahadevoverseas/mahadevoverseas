@@ -46,9 +46,9 @@ export default function Testimonials() {
     >
       <div className="relative mx-auto max-w-[1100px] px-5 text-center md:px-10">
         <p className="eyebrow mb-5 text-brand-cyan">{testimonials.eyebrow}</p>
-        <SplitReveal className="font-display text-[clamp(2.2rem,5vw,4rem)] text-ink">
-          <span id="testi-title">{testimonials.title}</span>
-        </SplitReveal>
+        <SplitReveal id="testi-title" className="font-display text-[clamp(2.2rem,5vw,4rem)] text-ink">
+            {testimonials.title}
+          </SplitReveal>
 
         <figure ref={quoteRef} className="mt-14 min-h-[16rem] md:min-h-[14rem]" aria-live="polite">
           <Quote data-q className="mx-auto size-10 text-brand-red" aria-hidden="true" />

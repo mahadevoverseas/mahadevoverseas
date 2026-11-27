@@ -159,9 +159,9 @@ export default function Gallery() {
         <div className="mb-10 flex flex-col justify-between gap-6 md:mb-14 md:flex-row md:items-end">
           <div className="max-w-3xl">
             <p className="eyebrow mb-5 text-brand-cyan">{gallery.eyebrow}</p>
-            <SplitReveal className="font-display text-[clamp(2.6rem,6.5vw,5.5rem)] text-ink">
-              <span id="gallery-title">{gallery.title}</span>
-            </SplitReveal>
+            <SplitReveal id="gallery-title" className="font-display text-[clamp(2.6rem,6.5vw,5.5rem)] text-ink">
+            {gallery.title}
+          </SplitReveal>
             {gallery.intro && <p className="mt-5 max-w-xl text-muted">{gallery.intro}</p>}
           </div>
           {categories.length > 2 && (

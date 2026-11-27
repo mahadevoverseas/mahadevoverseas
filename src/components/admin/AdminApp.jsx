@@ -5,7 +5,7 @@ import Image from "next/image";
 import {
   BarChart3, BookOpen, Braces, Compass, ExternalLink, FileText, Footprints, Globe2, GraduationCap, Inbox,
   LayoutTemplate, Loader2, LogOut, Map, Menu, MessageSquareQuote, Navigation, Phone, RotateCcw, Save,
-  Settings, Sparkles, Ticket, X, CheckCircle2, AlertTriangle, ListChecks, Images,
+  Settings, Sparkles, Ticket, X, CheckCircle2, AlertTriangle, ListChecks, Images, UserRound,
 } from "lucide-react";
 import { Field } from "./FieldEditor";
 import Enquiries from "./Enquiries";
@@ -20,6 +20,7 @@ const GROUPS = [
   { id: "hero", label: "Home hero", icon: Sparkles, keys: ["hero"], page: "/" },
   { id: "stats", label: "Stats", icon: BarChart3, keys: ["stats"], page: "/" },
   { id: "about", label: "About", icon: BookOpen, keys: ["about"], page: "/about" },
+  { id: "owner", label: "Founder", icon: UserRound, keys: ["owner"], page: "/about" },
   { id: "countries", label: "Countries", icon: Globe2, keys: ["countriesSection", "countries", "origin"], page: "/countries" },
   { id: "journey", label: "Journey", icon: Map, keys: ["journey"], page: "/journey" },
   { id: "services", label: "Services", icon: Compass, keys: ["services"], page: "/services" },
