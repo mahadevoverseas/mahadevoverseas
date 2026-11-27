@@ -432,7 +432,7 @@
       {
         "icon": "Landmark",
         "title": "Education Loans",
-        "text": "Guidance on secured and unsecured loans with partner banks and NBFCs."
+        "text": "We compare offers from partner banks and NBFCs and handle your paperwork until sanction."
       },
       {
         "icon": "BedDouble",
@@ -991,6 +991,30 @@
       "[Memberships or partnerships you can verify]"
     ],
     "ctaLabel": "Book a session with the founder",
+    "ctaHref": "/contact"
+  },
+  "loans": {
+    "eyebrow": "Education loans",
+    "title": "Funding your future, made simple",
+    "points": [
+      {
+        "icon": "Landmark",
+        "title": "Education loans made simple",
+        "text": "We compare offers from partner banks and NBFCs and handle your paperwork until sanction."
+      },
+      {
+        "icon": "ShieldCheck",
+        "title": "Collateral-free loan options available*",
+        "text": "Unsecured education loans for eligible students, courses and universities."
+      },
+      {
+        "icon": "Zap",
+        "title": "Fast-track loan processing",
+        "text": "Fast-track loan processing with our partner lenders — so funding keeps pace with your offer letter and visa timeline."
+      }
+    ],
+    "footnote": "*Subject to lender approval. Loan approval, amount and interest rate are decided solely by the bank or NBFC based on their eligibility criteria.",
+    "ctaLabel": "Check my loan options",
     "ctaHref": "/contact"
   }
 }

@@ -299,11 +299,38 @@ export const services = {
     { icon: "Stamp", title: "Student Visa", text: "End-to-end visa filing, document checks and embassy appointment support." },
     { icon: "PenLine", title: "SOP & LOR", text: "Statements of purpose and recommendation letters that sound like you — only sharper." },
     { icon: "BookOpenCheck", title: "IELTS / PTE Coaching", text: "Small batches, mock tests and personal feedback for the score you need." },
-    { icon: "Landmark", title: "Education Loans", text: "Guidance on secured and unsecured loans with partner banks and NBFCs." },
+    { icon: "Landmark", title: "Education Loans", text: "We compare offers from partner banks and NBFCs and handle your paperwork until sanction." },
     { icon: "BedDouble", title: "Accommodation", text: "Help finding safe, affordable student housing before you land." },
     { icon: "Luggage", title: "Pre-departure Briefing", text: "What to pack, forex, SIM cards, first-week checklists and more." },
     { icon: "Users", title: "Dependent Visas", text: "Guidance for spouse and dependent visas where the country allows it." },
   ],
+};
+
+/* ---------------- EDUCATION LOANS (highlight block) ---------------- */
+// Never promise or guarantee loan approval — lenders decide. Keep the footnote.
+export const loans = {
+  "eyebrow": "Education loans",
+  "title": "Funding your future, made simple",
+  "points": [
+    {
+      "icon": "Landmark",
+      "title": "Education loans made simple",
+      "text": "We compare offers from partner banks and NBFCs and handle your paperwork until sanction."
+    },
+    {
+      "icon": "ShieldCheck",
+      "title": "Collateral-free loan options available*",
+      "text": "Unsecured education loans for eligible students, courses and universities."
+    },
+    {
+      "icon": "Zap",
+      "title": "Fast-track loan processing",
+      "text": "Fast-track loan processing with our partner lenders — so funding keeps pace with your offer letter and visa timeline."
+    }
+  ],
+  "footnote": "*Subject to lender approval. Loan approval, amount and interest rate are decided solely by the bank or NBFC based on their eligibility criteria.",
+  "ctaLabel": "Check my loan options",
+  "ctaHref": "/contact"
 };
 
 /* ---------------- SUCCESS STORIES ---------------- */
@@ -615,6 +642,7 @@ export const defaultContent = {
   countries,
   journey,
   services,
+  loans,
   stories,
   universities,
   eligibility,

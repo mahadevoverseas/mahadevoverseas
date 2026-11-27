@@ -5,7 +5,7 @@ import Image from "next/image";
 import {
   BarChart3, BookOpen, Braces, Compass, ExternalLink, FileText, Footprints, Globe2, GraduationCap, Inbox,
   LayoutTemplate, Loader2, LogOut, Map, Menu, MessageSquareQuote, Navigation, Phone, RotateCcw, Save,
-  Settings, Sparkles, Ticket, X, CheckCircle2, AlertTriangle, ListChecks, Images, UserRound,
+  Settings, Sparkles, Ticket, X, CheckCircle2, AlertTriangle, ListChecks, Images, UserRound, HandCoins,
 } from "lucide-react";
 import { Field } from "./FieldEditor";
 import Enquiries from "./Enquiries";
@@ -24,6 +24,7 @@ const GROUPS = [
   { id: "countries", label: "Countries", icon: Globe2, keys: ["countriesSection", "countries", "origin"], page: "/countries" },
   { id: "journey", label: "Journey", icon: Map, keys: ["journey"], page: "/journey" },
   { id: "services", label: "Services", icon: Compass, keys: ["services"], page: "/services" },
+  { id: "loans", label: "Education loans", icon: HandCoins, keys: ["loans"], page: "/services" },
   { id: "stories", label: "Success stories", icon: Ticket, keys: ["stories"], page: "/success-stories" },
   { id: "universities", label: "Universities", icon: GraduationCap, keys: ["universities"], page: "/about" },
   { id: "eligibility", label: "Eligibility checker", icon: ListChecks, keys: ["eligibility"], page: "/eligibility" },

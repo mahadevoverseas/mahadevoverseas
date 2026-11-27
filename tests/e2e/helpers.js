@@ -28,4 +28,4 @@ export function trackErrors(page) {
 export const readEnquiries = () => JSON.parse(fs.readFileSync(".test-content/enquiries.json", "utf8"));
 
 // The brief: never promise visa approval.
-export const BANNED = [/100\s*%\s*visa/i, /visa\s+guarantee/i, /guaranteed\s+visa/i, /guarantee(d)?\s+(your\s+)?(visa|approval|admission)/i];
+export const BANNED = [/100\s*%\s*visa/i, /visa\s+guarantee/i, /guaranteed\s+visa/i, /guarantee(d)?\s+(your\s+)?(visa|approval|admission|loan)/i, /(100\s*%|guaranteed)\s+loan/i, /loan\s+(approval\s+)?guarantee/i];

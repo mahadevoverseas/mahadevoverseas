@@ -4,7 +4,7 @@ import { defaultContent, countries, nav } from "@/lib/site";
 
 const allText = (o) => JSON.stringify(o).toLowerCase();
 // Compliance: the brief says never promise visa approval.
-const BANNED = [/100\s*%\s*visa/, /visa\s+guarantee/, /guaranteed\s+visa/, /guarantee(d)?\s+(your\s+)?(visa|approval|admission)/];
+const BANNED = [/100\s*%\s*visa/, /visa\s+guarantee/, /guaranteed\s+visa/, /guarantee(d)?\s+(your\s+)?(visa|approval|admission|loan)/i, /(100\s*%|guaranteed)\s+loan/i, /loan\s+(approval\s+)?guarantee/];
 
 describe("content rules", () => {
   for (const [label, content] of [
@@ -39,4 +39,16 @@ describe("content rules", () => {
       }
     }
   });
+});
+
+describe("education loan claims", () => {
+  for (const [label, content] of [
+    ["defaults", defaultContent],
+    ["saved content", JSON.parse(fs.readFileSync("content/site.json", "utf8"))],
+  ]) {
+    it(`any asterisked loan claim has the lender-approval footnote — ${label}`, () => {
+      const starred = content.loans.points.some((p) => /\*/.test(p.title + p.text));
+      if (starred) expect(content.loans.footnote).toMatch(/^\*\s*Subject to lender approval/i);
+    });
+  }
 });

@@ -42,3 +42,14 @@ test("about page introduces the founder", async ({ page }) => {
   await expect(founder.locator("img")).toHaveAttribute("alt", /.+/);
   await expect(founder.getByRole("link", { name: /founder/i })).toHaveAttribute("href", "/contact");
 });
+
+test("education loan highlights show with the lender-approval footnote", async ({ page }) => {
+  for (const path of ["/", "/services"]) {
+    await page.goto(path);
+    const loans = page.locator('section[aria-labelledby="loans-title"]');
+    await expect(loans).toBeAttached();
+    await expect(loans.locator("li")).toHaveCount(3);
+    await expect(loans).toContainText("Collateral-free loan options available*");
+    await expect(loans).toContainText(/\*Subject to lender approval/);
+  }
+});

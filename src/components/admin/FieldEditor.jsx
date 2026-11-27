@@ -32,6 +32,8 @@ const HINTS = {
   bio: "One box per paragraph. Write in the founder's own voice.",
   highlights: "Short facts shown as big numbers. Only use figures you can back up.",
   credentials: "Qualifications, trainings or memberships — only ones you can verify.",
+  points: "The highlighted cards. Never promise or guarantee loan approval — lenders decide.",
+  footnote: "Keep the *Subject to lender approval note whenever a card has an asterisk.",
   photo: "A clear, well-lit portrait works best (portrait shape, at least 800 px wide).",
 };
 
