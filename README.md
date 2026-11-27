@@ -8,7 +8,10 @@ Next.js (App Router, JavaScript) · Tailwind CSS v4 · GSAP ScrollTrigger · Len
 npm install
 npm run dev        # http://localhost:3000
 npm run build && npm start
+npm test           # unit + browser tests (see docs/TESTING.md)
 ```
+
+Testing — automated suites and the manual pre-launch checklist: [docs/TESTING.md](docs/TESTING.md).
 
 ## Pages
 

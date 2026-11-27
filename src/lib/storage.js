@@ -14,6 +14,7 @@ import { UPLOADS_DIR } from "./content";
  * Fallback when R2 is not configured: content/uploads, served at /media/…
  */
 export const r2Enabled = () =>
+  !process.env.LOCAL_CONTENT_DIR &&
   Boolean(process.env.R2_ACCOUNT_ID && process.env.R2_ACCESS_KEY_ID && process.env.R2_SECRET_ACCESS_KEY && process.env.R2_BUCKET && process.env.R2_PUBLIC_URL);
 
 let client;

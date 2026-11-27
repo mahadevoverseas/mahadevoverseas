@@ -13,10 +13,13 @@ import { COLLECTIONS, getDb, mongoEnabled } from "./mongodb";
  *
  * Fallback when MONGODB_URI is not set (local development):
  *   content/site.json and content/enquiries.json
+ * Tests: LOCAL_CONTENT_DIR=<folder> forces the file store in that folder.
  *
  * Any section missing from the store falls back to the defaults in site.js.
  */
-export const CONTENT_DIR = path.join(process.cwd(), "content");
+// LOCAL_CONTENT_DIR (used by the automated tests) points the site at a
+// throwaway folder and disables MongoDB / R2 entirely.
+export const CONTENT_DIR = process.env.LOCAL_CONTENT_DIR ? path.resolve(process.env.LOCAL_CONTENT_DIR) : path.join(process.cwd(), "content");
 const SITE_FILE = path.join(CONTENT_DIR, "site.json");
 const ENQUIRIES_FILE = path.join(CONTENT_DIR, "enquiries.json");
 export const UPLOADS_DIR = path.join(CONTENT_DIR, "uploads");

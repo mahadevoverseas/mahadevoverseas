@@ -1,7 +1,6 @@
 "use client";
 
 import { useRef } from "react";
-import ScrollSequence from "@/components/ScrollSequence";
 import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap";
 import { useSite } from "@/components/providers/ContentProvider";
 import { PlaneGlyph } from "@/components/ui/icons";
@@ -11,47 +10,18 @@ import FilmScene from "@/components/ui/FilmScene";
 
 function JourneyFilm() {
   const { journey } = useSite();
-  const titleRef = useRef(null);
-  const introRef = useRef(null);
-
-  const onTimeline = (tl) => {
-    const words = titleRef.current.querySelectorAll("[data-w]");
-    tl.from(words, { yPercent: 110, duration: 0.18, stagger: 0.03, ease: "power3.out" }, 0.12)
-      .from(introRef.current, { autoAlpha: 0, y: 30, duration: 0.12 }, 0.35)
-      .to([titleRef.current, introRef.current], { autoAlpha: 0, scale: 1.08, duration: 0.12, ease: "power2.in" }, 0.84);
-  };
-
-  const words = journey.title.split(" ");
-
   return (
-    <ScrollSequence
+    <FilmScene
       id="journey"
       name="journey"
-      frames={448}
-      mobileFrames={224}
+      mode="header"
+      eyebrow={journey.eyebrow}
+      title={journey.title}
+      text={journey.intro}
       length={260}
       mobileLength={180}
       posterAlt="Flying above the clouds down to a university campus"
-      onTimeline={onTimeline}
-    >
-      <div className="relative flex h-full flex-col items-center justify-center px-5 text-center">
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-charcoal/55 via-charcoal/20 to-charcoal/70" />
-        <p className="eyebrow relative mb-6 text-brand-cyan">{journey.eyebrow}</p>
-        <h2 ref={titleRef} className="font-display relative max-w-6xl text-[clamp(3rem,10vw,10rem)] text-ink drop-shadow-[0_10px_40px_rgba(0,0,0,0.45)]">
-          {words.map((w, i) => (
-            <span key={i} className="inline-block overflow-hidden pb-[0.04em] align-bottom">
-              <span data-w className={`inline-block ${w.toLowerCase() === "campus" ? "text-brand-red" : ""}`}>
-                {w}
-                {i < words.length - 1 ? " " : ""}
-              </span>
-            </span>
-          ))}
-        </h2>
-        <p ref={introRef} className="relative mt-6 max-w-md text-base font-semibold text-ink/85 md:text-lg">
-          {journey.intro}
-        </p>
-      </div>
-    </ScrollSequence>
+    />
   );
 }
 

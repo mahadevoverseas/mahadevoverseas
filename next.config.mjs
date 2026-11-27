@@ -6,7 +6,8 @@ const remoteHosts = [process.env.R2_PUBLIC_URL, process.env.NEXT_PUBLIC_FRAMES_B
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  /* config options here */
+  // Tests build into their own folder so they never replace your real build.
+  distDir: process.env.NEXT_DIST_DIR || ".next",
   experimental: {
     agentFeedback: true,
   },

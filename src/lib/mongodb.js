@@ -5,8 +5,10 @@ import { MongoClient } from "mongodb";
  *   MONGODB_URI=mongodb+srv://user:pass@cluster.xxxxx.mongodb.net
  *   MONGODB_DB=mahadev_overseas   (optional, this is the default)
  */
-// Ignored while the URI still contains a placeholder such as <db_username>.
-export const mongoEnabled = () => Boolean(process.env.MONGODB_URI) && !/<[^>]+>/.test(process.env.MONGODB_URI);
+// Ignored while the URI still contains a placeholder such as <db_username>,
+// and always off when LOCAL_CONTENT_DIR is set (automated tests).
+export const mongoEnabled = () =>
+  !process.env.LOCAL_CONTENT_DIR && Boolean(process.env.MONGODB_URI) && !/<[^>]+>/.test(process.env.MONGODB_URI);
 
 const g = globalThis;
 

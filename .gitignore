@@ -46,3 +46,9 @@ next-env.d.ts
 /content/enquiries.json
 /content/uploads/*
 !/content/uploads/.gitkeep
+
+# Test runs
+/.next-test/
+/.test-content/
+/playwright-report/
+/test-results/

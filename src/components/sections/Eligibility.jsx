@@ -7,19 +7,8 @@ import { gsap, useGSAP, prefersReducedMotion } from "@/lib/gsap";
 import { useSite } from "@/components/providers/ContentProvider";
 import { submitEnquiry, PHONE_RE, EMAIL_RE } from "@/lib/submit-enquiry";
 import SplitReveal from "@/components/ui/SplitReveal";
+import { suggestCountries as suggest } from "@/lib/eligibility";
 
-function suggest(answers, countries, eligibility) {
-  const score = Object.fromEntries(countries.map((c) => [c.id, 0]));
-  for (const [q, value] of Object.entries(answers)) {
-    const table = eligibility.weights[q]?.[value] ?? {};
-    for (const [id, pts] of Object.entries(table)) score[id] += pts;
-  }
-  return countries
-    .map((c) => ({ ...c, score: score[c.id] }))
-    .sort((a, b) => b.score - a.score)
-    .slice(0, 3)
-    .filter((c, i) => i < 2 || c.score > 0);
-}
 
 export default function Eligibility() {
   const { eligibility, countries } = useSite();
