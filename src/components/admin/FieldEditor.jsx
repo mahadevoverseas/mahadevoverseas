@@ -32,6 +32,7 @@ const HINTS = {
   enabled: "Show or hide this element.",
   video: "Optional MP4/WebM video (max 100 MB). When set, the tile plays this video; the image is used as its cover.",
   category: "Used for the filter buttons on the gallery page.",
+  gtmId: "Google Tag Manager container ID, e.g. GTM-5TRM8RB5. Leave empty to turn tracking off. Loads only on the live site.",
   googleVerification: "From Google Search Console → Add property → HTML tag: paste only the content=\"…\" code.",
   bingVerification: "From Bing Webmaster Tools → HTML meta tag: paste only the content code.",
   pages: "Google listing for each page. Title: up to 60 characters. Description: up to 160. {city}, {name} and (on country pages) {country} are filled in automatically.",

@@ -1,8 +1,11 @@
-import { site } from "@/lib/site";
+import { getContent } from "@/lib/content";
 
-export default function robots() {
+export default async function robots() {
+  const { site } = await getContent();
+  const url = site.url.replace(/\/$/, "");
   return {
     rules: { userAgent: "*", allow: "/", disallow: ["/api/", "/admin"] },
-    sitemap: `${site.url}/sitemap.xml`,
+    sitemap: `${url}/sitemap.xml`,
+    host: url,
   };
 }

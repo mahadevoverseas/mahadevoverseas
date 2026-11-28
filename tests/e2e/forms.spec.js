@@ -19,6 +19,12 @@ test("contact form validates and saves an enquiry", async ({ page }, info) => {
   await expect(page.getByText(/Thank you! Your enquiry has reached us/)).toBeVisible();
 
   await expect.poll(() => readEnquiries().find((e) => e.name === name)?.country).toBe("Canada");
+
+  // Analytics lead event: useful details, but never personal data.
+  const events = await page.evaluate(() => (window.dataLayer || []).filter((e) => e.event === "generate_lead"));
+  expect(events).toEqual([expect.objectContaining({ form_name: "contact", country_interest: "Canada" })]);
+  const raw = JSON.stringify(events);
+  for (const pii of [name, "98765", "e2e@example.com"]) expect(raw).not.toContain(pii);
 });
 
 test("eligibility checker suggests countries with a disclaimer and captures the lead", async ({ page }, info) => {
@@ -42,4 +48,8 @@ test("eligibility checker suggests countries with a disclaimer and captures the 
 
   await expect.poll(() => readEnquiries().find((e) => e.name === name)?.source).toBe("eligibility-checker");
   expect(readEnquiries().find((e) => e.name === name).suggestions[0]).toBe("Germany");
+
+  const events = await page.evaluate(() => (window.dataLayer || []).filter((e) => e.event === "generate_lead"));
+  expect(events).toEqual([expect.objectContaining({ form_name: "eligibility" })]);
+  expect(JSON.stringify(events)).not.toContain("quiz@example.com");
 });

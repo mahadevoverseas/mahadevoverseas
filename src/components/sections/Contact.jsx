@@ -5,6 +5,7 @@ import { Phone, Mail, MapPin, Clock, Loader2, Send, CheckCircle2 } from "lucide-
 import { useSite } from "@/components/providers/ContentProvider";
 import { whatsappLink } from "@/lib/site";
 import { submitEnquiry, PHONE_RE, EMAIL_RE } from "@/lib/submit-enquiry";
+import { track } from "@/lib/analytics";
 import { WhatsAppIcon } from "@/components/ui/icons";
 import SplitReveal from "@/components/ui/SplitReveal";
 import Magnetic from "@/components/ui/Magnetic";
@@ -36,6 +37,7 @@ export default function Contact() {
     setStatus({ state: "loading", message: "" });
     try {
       await submitEnquiry({ source: "contact-form", ...form, website: e.currentTarget.website?.value ?? "" });
+      track("generate_lead", { form_name: "contact", country_interest: form.country, intake: form.intake || "not set" });
       setStatus({ state: "success", message: contactSection.successMessage });
       setForm(EMPTY);
     } catch (err) {

@@ -8,6 +8,7 @@ import { useSite } from "@/components/providers/ContentProvider";
 import { submitEnquiry, PHONE_RE, EMAIL_RE } from "@/lib/submit-enquiry";
 import SplitReveal from "@/components/ui/SplitReveal";
 import { suggestCountries as suggest } from "@/lib/eligibility";
+import { track } from "@/lib/analytics";
 
 
 export default function Eligibility() {
@@ -48,6 +49,7 @@ export default function Eligibility() {
         suggestions: results.map((r) => r.name),
         website: e.currentTarget.website?.value ?? "",
       });
+      track("generate_lead", { form_name: "eligibility", suggested_countries: results.map((r) => r.name).join(", ") });
       setStatus({ state: "idle", message: "" });
       setStep(total + 1);
     } catch (err) {

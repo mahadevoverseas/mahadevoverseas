@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import fs from "fs";
 import { breadcrumbs, faqPage, fillTemplate, isPlaceholder, openingHours, organizationGraph } from "@/lib/structured-data";
 import { defaultContent } from "@/lib/site";
+import { isValidGtmId } from "@/lib/analytics";
 
 const sample = (over = {}) => ({ ...defaultContent, ...over });
 
@@ -69,5 +70,14 @@ describe("structured data", () => {
     expect(f.mainEntity[0].name).toBe("Best consultant in Guntur?");
     expect(faqPage([{ q: "[x]", a: "[y]" }], {})).toBeNull();
     expect(isPlaceholder("[Founder name]")).toBe(true);
+  });
+});
+
+describe("Google Tag Manager ID", () => {
+  it("accepts real container IDs and rejects anything else", () => {
+    expect(isValidGtmId("GTM-5TRM8RB5")).toBe(true);
+    expect(isValidGtmId(" GTM-5TRM8RB5 ")).toBe(true);
+    for (const bad of ["", "G-ABC123", "GTM-", "gtm-5trm8rb5", "GTM-5TRM8RB5'><script>", undefined]) expect(isValidGtmId(bad)).toBe(false);
+    expect(isValidGtmId(defaultContent.seo.gtmId)).toBe(true);
   });
 });

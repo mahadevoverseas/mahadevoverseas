@@ -37,6 +37,9 @@ for (const path of PAGES) {
     const text = await page.locator("body").innerText();
     for (const re of BANNED) expect(text).not.toMatch(re);
 
+    // Tag Manager must stay off in automated test runs (only real visitors are counted).
+    await expect(page.locator('script[src*="googletagmanager.com"]')).toHaveCount(0);
+
     expect(errors).toEqual([]);
   });
 }

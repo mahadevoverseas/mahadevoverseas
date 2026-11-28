@@ -20,7 +20,7 @@ export const site = {
   // TODO: replace with the real city name everywhere it appears.
   city: "[CITY]",
   // TODO: replace with the production domain (used for SEO + Open Graph).
-  url: "https://www.mahadevoverseas.com",
+  url: "https://www.mahadevoverseas.services",
   description:
     "Mahadev Overseas is a study visa consultancy helping Indian students with admissions and student visas for Canada, UK, Australia, USA, Germany, Ireland and New Zealand — honest guidance from first counselling to boarding the flight.",
   foundedYear: 2016, // TODO: confirm founding year
@@ -609,6 +609,7 @@ export const gallery = {
 /* ---------------- SEO (Admin → SEO) ---------------- */
 // Titles ≤ 60 characters, descriptions ≤ 160. {city} / {name} / {country} are filled in.
 export const seo = {
+  "gtmId": "GTM-5TRM8RB5",
   "googleVerification": "",
   "bingVerification": "",
   "pages": {

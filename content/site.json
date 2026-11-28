@@ -4,7 +4,7 @@
     "shortName": "MO",
     "tagline": "We deal in study visas",
     "city": "Guntur",
-    "url": "https://www.mahadevoverseas.com",
+    "url": "https://www.mahadevoverseas.services",
     "description": "Mahadev Overseas is a study visa consultancy helping Indian students with admissions and student visas for Canada, UK, Australia, USA, Germany, Ireland and New Zealand — honest guidance from first counselling to boarding the flight.",
     "foundedYear": 2022
   },
@@ -1018,6 +1018,7 @@
     "ctaHref": "/contact"
   },
   "seo": {
+    "gtmId": "GTM-5TRM8RB5",
     "googleVerification": "",
     "bingVerification": "",
     "pages": {
