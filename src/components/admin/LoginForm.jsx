@@ -12,7 +12,7 @@ export default function LoginForm() {
 
   return (
     <form action={action} className="card w-full max-w-sm p-8">
-      <Image src="/brand/logo-on-dark.png" alt="Mahadev Overseas" width={1417} height={832} priority className="mx-auto h-20 w-auto" />
+      <Image src="/brand/logo-on-dark.png" alt="Mahadev Overseas" width={1417} height={832} priority sizes="150px" className="mx-auto h-20 w-auto" />
       <h1 className="font-display mt-6 text-center text-3xl text-ink">Admin panel</h1>
       <p className="mt-1 text-center text-sm text-muted">Edit every page of the website.</p>
       <input type="hidden" name="next" value={next} />

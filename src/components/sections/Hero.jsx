@@ -4,6 +4,7 @@ import { useRef } from "react";
 import ScrollSequence from "@/components/ScrollSequence";
 import { gsap, useGSAP, prefersReducedMotion } from "@/lib/gsap";
 import { onIntro } from "@/lib/loader-store";
+import { fillTemplate } from "@/lib/structured-data";
 import { useSite } from "@/components/providers/ContentProvider";
 
 export default function Hero() {
@@ -18,14 +19,14 @@ export default function Hero() {
   useGSAP(
     () => {
       if (prefersReducedMotion()) return;
+      // Text is visible from the very first paint (good for Google's LCP);
+      // the entrance animation plays *from* hidden as the loader slides away.
       const words = overlayRef.current.querySelectorAll("[data-hero-in]");
-      gsap.set(words, { yPercent: 110 });
-      gsap.set([eyebrowRef.current, metaRef.current], { autoAlpha: 0, y: 20 });
       return onIntro(() => {
         gsap
           .timeline()
-          .to(words, { yPercent: 0, duration: 1.3, ease: "expo.out", stagger: 0.12 })
-          .to([eyebrowRef.current, metaRef.current], { autoAlpha: 1, y: 0, duration: 0.9, ease: "power3.out", stagger: 0.1 }, 0.35);
+          .from(words, { yPercent: 110, duration: 1.3, ease: "expo.out", stagger: 0.12 })
+          .from([eyebrowRef.current, metaRef.current], { autoAlpha: 0, y: 20, duration: 0.9, ease: "power3.out", stagger: 0.1 }, 0.35);
       });
     },
     { scope: overlayRef }
@@ -56,11 +57,12 @@ export default function Hero() {
       <div ref={overlayRef} className="relative flex h-full flex-col items-center justify-center px-5 text-center">
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-charcoal/60 via-transparent to-charcoal/80" />
 
-        <p ref={eyebrowRef} className="eyebrow relative mb-6 text-brand-cyan md:mb-8">
-          {hero.eyebrow}
-        </p>
+        {/* The <h1> is what Google reads first: "Study visa consultants in Guntur". */}
+        <h1 ref={eyebrowRef} className="eyebrow relative mb-6 text-brand-cyan md:mb-8">
+          {fillTemplate(hero.seoHeading || "Study visa consultants in {city}", { city: site.city })}
+        </h1>
 
-        <h1 className="font-display relative text-ink">
+        <p className="font-display relative text-ink">
           <span className="sr-only">
             {hero.lineOne} {hero.lineTwo}
           </span>
@@ -82,7 +84,7 @@ export default function Hero() {
               )}
             </span>
           </span>
-        </h1>
+        </p>
 
         <div ref={metaRef} className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-6 px-5 pb-8 md:px-10 md:pb-10">
           <p className="max-w-[14rem] text-left text-xs font-semibold tracking-[0.18em] text-ink/80 uppercase md:max-w-none md:text-[0.8rem]">
@@ -98,7 +100,7 @@ export default function Hero() {
             </span>
           </a>
           <span className="hidden text-right text-xs font-semibold tracking-[0.18em] text-ink/60 uppercase md:block">
-            Est. {site.foundedYear}
+            {hero.eyebrow} · Est. {site.foundedYear}
           </span>
         </div>
       </div>

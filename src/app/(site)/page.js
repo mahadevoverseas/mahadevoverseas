@@ -9,6 +9,7 @@ import Universities from "@/components/sections/Universities";
 import Testimonials from "@/components/sections/Testimonials";
 import CtaBand from "@/components/ui/CtaBand";
 import Faq from "@/components/sections/Faq";
+import GuidesList from "@/components/sections/GuidesList";
 
 export async function generateMetadata() {
   return pageMetadata("home", "/");
@@ -25,6 +26,7 @@ export default function Home() {
       <Stories />
       <Universities />
       <Testimonials />
+      <GuidesList limit={3} teaser />
       <Faq />
       <CtaBand />
     </>

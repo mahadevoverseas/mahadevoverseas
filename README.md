@@ -13,6 +13,8 @@ npm test           # unit + browser tests (see docs/TESTING.md)
 
 Testing — automated suites and the manual pre-launch checklist: [docs/TESTING.md](docs/TESTING.md).
 
+Getting found on Google (Business Profile, reviews, citations, content plan): [docs/SEO-PLAYBOOK.md](docs/SEO-PLAYBOOK.md).
+
 ## Pages
 
 `/` · `/countries` · `/countries/[id]` · `/journey` · `/services` · `/success-stories` · `/about` · `/eligibility` · `/contact` · `/admin`

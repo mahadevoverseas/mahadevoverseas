@@ -5,7 +5,7 @@ import Image from "next/image";
 import {
   BarChart3, BookOpen, Braces, Compass, ExternalLink, FileText, Footprints, Globe2, GraduationCap, Inbox,
   LayoutTemplate, Loader2, LogOut, Map, Menu, MessageSquareQuote, Navigation, Phone, RotateCcw, Save,
-  Settings, Sparkles, Ticket, X, CheckCircle2, AlertTriangle, ListChecks, Images, UserRound, HandCoins, Search, CircleHelp,
+  Settings, Sparkles, Ticket, X, CheckCircle2, AlertTriangle, ListChecks, Images, UserRound, HandCoins, Search, CircleHelp, Newspaper,
 } from "lucide-react";
 import { Field } from "./FieldEditor";
 import Enquiries from "./Enquiries";
@@ -31,6 +31,7 @@ const GROUPS = [
   { id: "eligibility", label: "Eligibility checker", icon: ListChecks, keys: ["eligibility"], page: "/eligibility" },
   { id: "testimonials", label: "Testimonials", icon: MessageSquareQuote, keys: ["testimonials"], page: "/success-stories" },
   { id: "gallery", label: "Gallery", icon: Images, keys: ["gallery"], page: "/gallery" },
+  { id: "guides", label: "Guides (blog)", icon: Newspaper, keys: ["guides"], page: "/guides" },
   { id: "faq", label: "FAQ", icon: CircleHelp, keys: ["faq"], page: "/contact" },
   { id: "contactSection", label: "Contact page", icon: FileText, keys: ["contactSection"], page: "/contact" },
   { id: "footer", label: "Footer", icon: Footprints, keys: ["footer"], page: "/" },
@@ -165,7 +166,7 @@ export default function AdminApp({ initialContent, initialEnquiries }) {
       {/* Sidebar */}
       <aside className="sticky top-0 hidden h-svh flex-col bg-charcoal text-ink lg:flex">
         <div className="border-b border-white/10 p-5">
-          <Image src="/brand/logo-on-dark.png" alt="Mahadev Overseas" width={1417} height={832} className="h-12 w-auto" />
+          <Image src="/brand/logo-on-dark.png" alt="Mahadev Overseas" width={1417} height={832} sizes="100px" className="h-12 w-auto" />
         </div>
         {sidebar}
         <form action={logout} className="border-t border-white/10 p-4">
@@ -177,7 +178,7 @@ export default function AdminApp({ initialContent, initialEnquiries }) {
 
       {/* Mobile top bar */}
       <div className="sticky top-0 z-40 flex items-center justify-between bg-charcoal px-4 py-3 text-ink lg:hidden">
-        <Image src="/brand/logo-on-dark.png" alt="Mahadev Overseas" width={1417} height={832} className="h-9 w-auto" />
+        <Image src="/brand/logo-on-dark.png" alt="Mahadev Overseas" width={1417} height={832} sizes="80px" className="h-9 w-auto" />
         <button type="button" onClick={() => setNavOpen(true)} className="grid size-10 place-items-center rounded-[10px] border border-white/15" aria-label="Open sections">
           <Menu className="size-5" />
         </button>

@@ -52,3 +52,19 @@ test("robots.txt hides admin and sitemap lists all pages", async ({ request }) =
   const sitemap = await (await request.get("/sitemap.xml")).text();
   for (const p of ["/countries", "/services", "/journey", "/gallery", "/contact", "/countries/canada"]) expect(sitemap).toContain(p);
 });
+
+test("guides: article structured data, listed in sitemap, drafts hidden", async ({ page, request }) => {
+  await page.goto("/guides/education-loan-documents-checklist");
+  const lds = (await page.locator('script[type="application/ld+json"]').allTextContents()).map((t) => JSON.parse(t));
+  const article = lds.find((d) => d["@type"] === "Article");
+  expect(article.headline).toMatch(/education loan/i);
+  expect(article.datePublished).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+  await expect(page.locator("h1")).toContainText(/education loan/i);
+
+  const sitemap = await (await request.get("/sitemap.xml")).text();
+  expect(sitemap).toContain("/guides/how-to-choose-study-visa-consultant-guntur");
+  expect(sitemap).not.toContain("cost-of-studying-in-canada"); // draft
+
+  await page.goto("/guides/cost-of-studying-in-canada-from-india");
+  await expect(page.getByRole("heading", { name: /off the flight path/i })).toBeVisible();
+});

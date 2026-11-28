@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
 import { useSite } from "@/components/providers/ContentProvider";
 import { whatsappLink } from "@/lib/site";
-import { SocialIcon, WhatsAppIcon } from "@/components/ui/icons";
+import { SocialIcon, WhatsAppIcon, GoogleIcon } from "@/components/ui/icons";
 import FlightPath from "@/components/ui/FlightPath";
 
 export default function Footer() {
@@ -16,7 +16,7 @@ export default function Footer() {
       <div className="mx-auto max-w-[1440px] px-5 md:px-10">
         <div className="grid gap-12 border-b border-white/10 pb-14 md:grid-cols-2 lg:grid-cols-12">
           <div className="lg:col-span-4">
-            <Image src="/brand/logo-on-dark.png" alt="Mahadev Overseas" width={1417} height={832} className="h-24 w-auto" />
+            <Image src="/brand/logo-on-dark.png" alt="Mahadev Overseas" width={1417} height={832} sizes="180px" className="h-24 w-auto" />
             <p className="mt-6 max-w-sm text-sm leading-relaxed text-muted">{footer.blurb}</p>
             <div className="mt-6 flex gap-2">
               {contact.socials.map((s) => (
@@ -53,6 +53,11 @@ export default function Footer() {
                   </Link>
                 </li>
               ))}
+              <li>
+                <Link href="/guides" className="text-muted transition-colors hover:text-ink">
+                  Study abroad guides
+                </Link>
+              </li>
               <li>
                 <Link href="/eligibility" className="text-muted transition-colors hover:text-ink">
                   Eligibility checker
@@ -101,6 +106,11 @@ export default function Footer() {
                 </a>
               </li>
             </ul>
+            {/^https:\/\//.test(contact.googleReviewUrl ?? "") && (
+              <a href={contact.googleReviewUrl} target="_blank" rel="noopener noreferrer" className="mt-4 flex items-center gap-2 text-sm font-semibold text-muted hover:text-ink">
+                <GoogleIcon className="size-4" /> Review us on Google
+              </a>
+            )}
             <Link href="/contact" className="btn btn-red mt-6">
               Book free counselling
             </Link>

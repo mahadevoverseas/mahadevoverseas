@@ -17,6 +17,7 @@ const analyticsOn = process.env.NODE_ENV === "production" && !process.env.DISABL
 export default async function SiteLayout({ children }) {
   const content = await getContent();
   const gtmId = analyticsOn && isValidGtmId(content.seo?.gtmId) ? content.seo.gtmId.trim() : null;
+  const clarityId = analyticsOn ? content.seo?.clarityId : null;
   return (
     <ContentProvider content={content}>
       {gtmId && (
@@ -30,7 +31,7 @@ export default async function SiteLayout({ children }) {
           />
         </noscript>
       )}
-      <Analytics gtmId={gtmId} />
+      <Analytics gtmId={gtmId} clarityId={clarityId} />
       <noscript>
         <style>{`html.is-loading,html.is-loading body{overflow:auto!important}#mo-loader{display:none!important}`}</style>
       </noscript>

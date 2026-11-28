@@ -52,3 +52,20 @@ describe("education loan claims", () => {
     });
   }
 });
+
+describe("guides", () => {
+  for (const [label, content] of [
+    ["defaults", defaultContent],
+    ["saved content", JSON.parse(fs.readFileSync("content/site.json", "utf8"))],
+  ]) {
+    it(`slugs are unique and URL-safe; published guides have no placeholders — ${label}`, () => {
+      const slugs = content.guides.items.map((g) => g.slug);
+      expect(new Set(slugs).size).toBe(slugs.length);
+      for (const g of content.guides.items) {
+        expect(g.slug).toMatch(/^[a-z0-9]+(-[a-z0-9]+)*$/);
+        expect(g.date).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+        if (g.published) expect(JSON.stringify(g), g.slug).not.toMatch(/\[[A-Z][^\]"]*\]/);
+      }
+    });
+  }
+});

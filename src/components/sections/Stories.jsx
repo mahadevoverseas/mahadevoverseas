@@ -25,13 +25,13 @@ function BoardingPass({ s, i }) {
             <Image src={s.photo} alt={`Photo of ${s.name}`} fill sizes="64px" className="object-cover" draggable={false} />
           </div>
           <div className="min-w-0 flex-1 sm:pr-36">
-            <p className="text-[0.6rem] font-bold tracking-[0.2em] text-navy/55 uppercase">Passenger</p>
+            <p className="text-[0.6rem] font-bold tracking-[0.2em] text-navy/65 uppercase">Passenger</p>
             <p className="font-display truncate text-2xl sm:text-3xl">{s.name}</p>
           </div>
         </div>
         <div className="flex items-center gap-3 px-4 py-4 sm:px-5">
           <div>
-            <p className="text-[0.6rem] font-bold tracking-[0.2em] text-navy/55 uppercase">From</p>
+            <p className="text-[0.6rem] font-bold tracking-[0.2em] text-navy/65 uppercase">From</p>
             <p className="font-display text-4xl leading-none sm:text-5xl">{s.fromCode}</p>
             <p className="text-xs font-semibold text-navy/70">{s.from}</p>
           </div>
@@ -41,22 +41,22 @@ function BoardingPass({ s, i }) {
             <span className="h-px flex-1 border-t border-dashed border-navy/30" />
           </div>
           <div className="text-right">
-            <p className="text-[0.6rem] font-bold tracking-[0.2em] text-navy/55 uppercase">To</p>
+            <p className="text-[0.6rem] font-bold tracking-[0.2em] text-navy/65 uppercase">To</p>
             <p className="font-display text-4xl leading-none sm:text-5xl">{s.toCode}</p>
             <p className="text-xs font-semibold text-navy/70">{s.to}</p>
           </div>
         </div>
         <dl className="mt-auto grid grid-cols-1 gap-3 border-t border-dashed border-navy/15 py-4 pr-28 pl-4 text-xs sm:grid-cols-[1.3fr_1.3fr_0.8fr] sm:px-5">
           <div>
-            <dt className="text-[0.6rem] font-bold tracking-[0.2em] text-navy/55 uppercase">University</dt>
+            <dt className="text-[0.6rem] font-bold tracking-[0.2em] text-navy/65 uppercase">University</dt>
             <dd className="mt-1 font-semibold">{s.university}</dd>
           </div>
           <div>
-            <dt className="text-[0.6rem] font-bold tracking-[0.2em] text-navy/55 uppercase">Course</dt>
+            <dt className="text-[0.6rem] font-bold tracking-[0.2em] text-navy/65 uppercase">Course</dt>
             <dd className="mt-1 font-semibold">{s.course}</dd>
           </div>
           <div>
-            <dt className="text-[0.6rem] font-bold tracking-[0.2em] text-navy/55 uppercase">Intake</dt>
+            <dt className="text-[0.6rem] font-bold tracking-[0.2em] text-navy/65 uppercase">Intake</dt>
             <dd className="mt-1 font-semibold">{s.intake}</dd>
           </div>
         </dl>
@@ -78,7 +78,7 @@ function BoardingPass({ s, i }) {
 
       {/* Stub */}
       <div className="flex w-18 shrink-0 flex-col items-center justify-between bg-mist py-4 sm:w-28" aria-hidden="true">
-        <span className="text-[0.5rem] font-bold tracking-[0.15em] text-navy/55 uppercase sm:text-[0.55rem]">Seat {String(i + 12)}A</span>
+        <span className="text-[0.5rem] font-bold tracking-[0.15em] text-navy/65 uppercase sm:text-[0.55rem]">Seat {String(i + 12)}A</span>
         <div className="text-center">
           <p className="font-display text-xl leading-none sm:text-2xl">{s.fromCode}</p>
           <PlaneGlyph className="mx-auto my-1 size-4 rotate-90 text-red-strong" />

@@ -35,15 +35,20 @@ export default function Loader() {
         .timeline({ delay: wait, onComplete: done })
         .to(shown, { v: 1, duration: reduce ? 0 : 0.4, ease: "power2.out", onUpdate: render })
         .to(root.querySelector("[data-loader-inner]"), { autoAlpha: 0, y: -20, duration: reduce ? 0 : 0.4, ease: "power2.in" }, "+=0.15")
-        .to(root, { yPercent: -100, duration: reduce ? 0 : 0.9, ease: "expo.inOut" }, "-=0.1");
+        .add(announce, "-=0.1") // page content starts its entrance while the loader slides away
+        .to(root, { yPercent: -100, duration: reduce ? 0 : 0.9, ease: "expo.inOut" }, "<");
     };
 
-    const done = () => {
-      root.style.display = "none";
+    const announce = () => {
+      if (window.__moIntroDone) return;
       document.documentElement.classList.remove("is-loading");
       getLenis()?.start();
       window.__moIntroDone = true;
       window.dispatchEvent(new Event(INTRO_EVENT));
+    };
+    const done = () => {
+      announce();
+      root.style.display = "none";
       ScrollTrigger.refresh();
     };
 
@@ -58,8 +63,9 @@ export default function Loader() {
       leave();
     }
 
-    // Never trap a visitor behind the loader on a slow connection.
-    const safety = setTimeout(() => loaderStore.finish(), 9000);
+    // Never keep a visitor waiting: on a slow connection the page shows the
+    // still poster after ~2 s while the video frames keep loading.
+    const safety = setTimeout(() => loaderStore.finish(), 2000);
 
     return () => {
       unsub();
@@ -78,7 +84,7 @@ export default function Loader() {
       aria-label="Loading Mahadev Overseas"
     >
       <div data-loader-inner className="flex w-56 flex-col items-center gap-6">
-        <Image src="/brand/mo-monogram.png" alt="Mahadev Overseas" width={1261} height={597} priority className="h-auto w-40" />
+        <Image src="/brand/mo-monogram.png" alt="Mahadev Overseas" width={1261} height={597} priority sizes="160px" className="h-auto w-40" />
         <div className="h-[2px] w-full overflow-hidden rounded-full bg-white/10">
           <div ref={lineRef} className="h-full w-full origin-left scale-x-0 bg-brand-red" />
         </div>

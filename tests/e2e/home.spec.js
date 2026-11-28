@@ -4,7 +4,8 @@ import { open, trackErrors } from "./helpers";
 test("home: hero, scroll scenes and sections work end to end", async ({ page }) => {
   const errors = trackErrors(page);
   await open(page, "/");
-  await expect(page.locator("h1")).toContainText(/your future/i);
+  await expect(page.locator("h1")).toContainText(/study visa consultants in/i);
+  await expect(page.getByText(/your future/i).first()).toBeVisible();
   await expect(page.locator("#stats")).toBeAttached();
 
   // Scroll through the whole page in steps — nothing should throw.

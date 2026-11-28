@@ -8,6 +8,7 @@ import { useSite } from "@/components/providers/ContentProvider";
 import { SERVICE_ICONS } from "@/lib/service-icons";
 import SplitReveal from "@/components/ui/SplitReveal";
 import Magnetic from "@/components/ui/Magnetic";
+import DecoNum from "@/components/ui/DecoNum";
 
 /** Highlighted education-loan promises (Admin → Education loans). */
 export default function Loans() {
@@ -77,7 +78,7 @@ export default function Loans() {
                   <span className="grid size-14 place-items-center rounded-[10px] bg-brand-red/15 text-brand-red ring-1 ring-brand-red/30 transition-transform duration-500 group-hover:scale-110">
                     <Icon className="size-7" strokeWidth={1.75} aria-hidden="true" />
                   </span>
-                  <span className="font-display text-3xl text-white/10">{String(i + 1).padStart(2, "0")}</span>
+                  <DecoNum n={i + 1} className="font-display text-3xl text-white/10" />
                 </div>
                 <h3 className="font-display mt-8 text-[clamp(1.75rem,2.6vw,2.4rem)] text-ink">{p.title}</h3>
                 {p.text && <p className="mt-3 text-sm leading-relaxed text-muted md:text-base">{p.text}</p>}

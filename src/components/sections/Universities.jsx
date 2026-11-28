@@ -19,8 +19,8 @@ function Tile({ u, i }) {
         />
       ) : (
         <span className="text-center leading-tight">
-          <span className={`font-display block text-2xl text-navy/45 transition-colors duration-500 ${ACCENTS[i % 2]}`}>{u.name}</span>
-          <span className="mt-1 block text-[0.65rem] font-bold tracking-[0.25em] text-navy/45 uppercase">{u.country}</span>
+          <span className={`font-display block text-2xl text-navy/65 transition-colors duration-500 ${ACCENTS[i % 2]}`}>{u.name}</span>
+          <span className="mt-1 block text-[0.65rem] font-bold tracking-[0.25em] text-navy/65 uppercase">{u.country}</span>
         </span>
       )}
     </li>

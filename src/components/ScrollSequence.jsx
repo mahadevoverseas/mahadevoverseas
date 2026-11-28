@@ -89,7 +89,8 @@ export default function ScrollSequence({
             wanted = idx;
             const dir = idx >= lastIdx ? 1 : -1;
             lastIdx = idx;
-            loader.warm(idx, dir); // decode upcoming frames off the main thread
+            // While scrolling, decode well ahead; at rest (first paint, resize) only a few.
+            loader.warm(idx, dir, force ? 2 : 18, force ? 1 : 4);
             const ready = loader.nearestReady(idx); // never block on a sync decode
             if (ready < 0 || (!force && ready === drawn)) return;
             paint(ready);
@@ -113,7 +114,7 @@ export default function ScrollSequence({
           const loader = createFrameLoader({
             count,
             src: (i) => frameUrl(`/frames/${folder}/frame_${pad(i + 1)}.webp`),
-            priority: 30,
+            priority: 12,
             concurrency: mobile ? 4 : 6,
             // A frame became ready: repaint if it is closer to what we want than what's shown.
             onFrame: (i) => {

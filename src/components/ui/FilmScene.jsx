@@ -33,11 +33,9 @@ export default function FilmScene({ name, page, eyebrow, title, text, mode = "sc
       const el = overlayRef.current;
       const w = el.querySelectorAll("[data-fs-word]");
       const f = el.querySelectorAll("[data-fs-fade]");
-      gsap.set(w, { yPercent: 110 });
-      gsap.set(f, { autoAlpha: 0, y: 20 });
       return onIntro(() => {
-        gsap.to(w, { yPercent: 0, duration: 1.2, ease: "expo.out", stagger: 0.06 });
-        gsap.to(f, { autoAlpha: 1, y: 0, duration: 0.9, ease: "power3.out", stagger: 0.1, delay: 0.25 });
+        gsap.from(w, { yPercent: 110, duration: 1.2, ease: "expo.out", stagger: 0.06 });
+        gsap.from(f, { autoAlpha: 0, y: 20, duration: 0.9, ease: "power3.out", stagger: 0.1, delay: 0.25 });
       });
     },
     { scope: overlayRef }

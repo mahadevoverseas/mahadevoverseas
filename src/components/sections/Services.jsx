@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { ArrowUpRight, CircleCheck } from "lucide-react";
 import { SERVICE_ICONS as ICONS } from "@/lib/service-icons";
+import DecoNum from "@/components/ui/DecoNum";
 import { useSite } from "@/components/providers/ContentProvider";
 import SplitReveal from "@/components/ui/SplitReveal";
 import Reveal from "@/components/ui/Reveal";
@@ -43,9 +44,7 @@ export default function Services() {
                   <span className="grid size-14 place-items-center rounded-[10px] bg-mist text-cyan-strong transition-colors duration-500 group-hover:bg-white/15 group-hover:text-white group-focus-visible:bg-white/15 group-focus-visible:text-white">
                     <Icon className="size-7" strokeWidth={1.5} aria-hidden="true" />
                   </span>
-                  <span className="font-display text-2xl text-navy/15 transition-colors duration-500 group-hover:text-white/40">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
+                  <DecoNum n={i + 1} className="font-display text-2xl text-navy/15 transition-colors duration-500 group-hover:text-white/40" />
                 </div>
                 <h3 className="font-display mt-auto pt-10 text-3xl transition-colors duration-500 group-hover:text-white group-focus-visible:text-white">
                   {s.title}

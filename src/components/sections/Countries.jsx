@@ -9,6 +9,7 @@ import { gsap, ScrollTrigger, useGSAP, prefersReducedMotion } from "@/lib/gsap";
 import { useSite } from "@/components/providers/ContentProvider";
 import SplitReveal from "@/components/ui/SplitReveal";
 import { getLenis } from "@/components/providers/SmoothScroll";
+import DecoNum from "@/components/ui/DecoNum";
 
 const GlobeView = dynamic(() => import("./GlobeView"), {
   ssr: false,
@@ -33,53 +34,52 @@ function CountryCard({ c, index, compact = false }) {
           <Image src={flagSrc(c.flag)} alt={`Flag of ${c.name}`} width={56} height={38} className="h-[38px] w-14 rounded-[4px] object-cover ring-1 ring-white/10" />
           <h3 className={`font-display text-ink ${compact ? "text-4xl" : "text-5xl lg:text-6xl"}`}>{c.name}</h3>
         </div>
-        <span className="font-display text-2xl text-white/15">{String(index + 1).padStart(2, "0")}</span>
+        <DecoNum n={index + 1} className="font-display text-2xl text-white/15" />
       </div>
 
       <dl className="mt-8 grid gap-5 text-sm">
-        <div className="flex gap-3">
-          <CalendarDays className="mt-0.5 size-4 shrink-0 text-brand-cyan" aria-hidden="true" />
-          <div>
-            <dt className="text-xs font-bold tracking-[0.2em] text-muted uppercase">Intakes</dt>
-            <dd className="mt-1 font-semibold text-ink">{c.intakes.join(" · ")}</dd>
-          </div>
+        <div>
+          <dt className="flex items-center gap-3 text-xs font-bold tracking-[0.2em] text-muted uppercase">
+            <CalendarDays className="size-4 shrink-0 text-brand-cyan" aria-hidden="true" />
+            Intakes
+          </dt>
+          <dd className="mt-1 font-semibold text-ink pl-7">{c.intakes.join(" · ")}</dd>
         </div>
-        <div className="flex gap-3">
-          <Wallet className="mt-0.5 size-4 shrink-0 text-brand-cyan" aria-hidden="true" />
-          <div>
-            <dt className="text-xs font-bold tracking-[0.2em] text-muted uppercase">Tuition (approx.)</dt>
-            <dd className="mt-1 font-semibold text-ink">{c.tuition}</dd>
-          </div>
+        <div>
+          <dt className="flex items-center gap-3 text-xs font-bold tracking-[0.2em] text-muted uppercase">
+            <Wallet className="size-4 shrink-0 text-brand-cyan" aria-hidden="true" />
+            Tuition (approx.)
+          </dt>
+          <dd className="mt-1 font-semibold text-ink pl-7">{c.tuition}</dd>
         </div>
-        <div className="flex gap-3">
-          <Briefcase className="mt-0.5 size-4 shrink-0 text-brand-cyan" aria-hidden="true" />
-          <div>
-            <dt className="text-xs font-bold tracking-[0.2em] text-muted uppercase">Post-study work</dt>
-            <dd className="mt-1 font-semibold text-ink">{c.work}</dd>
-          </div>
+        <div>
+          <dt className="flex items-center gap-3 text-xs font-bold tracking-[0.2em] text-muted uppercase">
+            <Briefcase className="size-4 shrink-0 text-brand-cyan" aria-hidden="true" />
+            Post-study work
+          </dt>
+          <dd className="mt-1 font-semibold text-ink pl-7">{c.work}</dd>
         </div>
-        <div className="flex gap-3">
-          <BookOpen className="mt-0.5 size-4 shrink-0 text-brand-cyan" aria-hidden="true" />
-          <div>
-            <dt className="text-xs font-bold tracking-[0.2em] text-muted uppercase">Popular courses</dt>
-            <dd className="mt-2 flex flex-wrap gap-2">
+        <div>
+          <dt className="flex items-center gap-3 text-xs font-bold tracking-[0.2em] text-muted uppercase">
+            <BookOpen className="size-4 shrink-0 text-brand-cyan" aria-hidden="true" />
+            Popular courses
+          </dt>
+          <dd className="mt-2 flex flex-wrap gap-2 pl-7">
               {c.courses.map((course) => (
                 <span key={course} className="rounded-full border border-white/12 px-3 py-1 text-xs font-semibold text-ink/90">
                   {course}
                 </span>
               ))}
-            </dd>
-          </div>
+          </dd>
         </div>
       </dl>
 
       <Link
         href={`/countries/${c.id}`}
-        className="group mt-auto inline-flex items-center gap-2 pt-8 text-sm font-bold text-brand-red"
-        aria-label={`Explore studying in ${c.name}`}
+        className="group mt-auto inline-flex items-center gap-2 pt-8 text-sm font-bold text-ink underline decoration-brand-red decoration-2 underline-offset-4 hover:text-white"
       >
         Explore {c.name}
-        <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
+        <ArrowUpRight className="size-4 text-brand-red transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" aria-hidden="true" />
       </Link>
     </article>
   );

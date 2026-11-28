@@ -39,6 +39,7 @@ for (const path of PAGES) {
 
     // Tag Manager must stay off in automated test runs (only real visitors are counted).
     await expect(page.locator('script[src*="googletagmanager.com"]')).toHaveCount(0);
+    await expect(page.locator("#ms-clarity")).toHaveCount(0);
 
     expect(errors).toEqual([]);
   });

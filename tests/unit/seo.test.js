@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import fs from "fs";
 import { breadcrumbs, faqPage, fillTemplate, isPlaceholder, openingHours, organizationGraph } from "@/lib/structured-data";
 import { defaultContent } from "@/lib/site";
-import { isValidGtmId } from "@/lib/analytics";
+import { isValidGtmId, isValidClarityId } from "@/lib/analytics";
 
 const sample = (over = {}) => ({ ...defaultContent, ...over });
 
@@ -50,7 +50,17 @@ describe("structured data", () => {
     expect(org.areaServed[0]).toEqual({ "@type": "City", name: "Guntur" });
     expect(org.hasOfferCatalog.itemListElement.length).toBe(defaultContent.services.items.length);
     expect(org.founder).toBeUndefined(); // founder name is still a placeholder
+    expect(org.alternateName).toContain("Mahadev Overseas Guntur");
+    const site = g["@graph"].find((n) => n["@type"] === "WebSite");
+    expect(site.name).toBe("Mahadev Overseas");
     expect(JSON.stringify(g)).not.toMatch(/\[[A-Za-z][^\]"]*\]/);
+  });
+
+  it("links the Google Business Profile when provided", () => {
+    const g = organizationGraph(sample({ contact: { ...defaultContent.contact, googleBusinessUrl: "https://maps.app.goo.gl/abc123" } }));
+    const org = g["@graph"][1];
+    expect(org.sameAs).toContain("https://maps.app.goo.gl/abc123");
+    expect(org.hasMap).toBe("https://maps.app.goo.gl/abc123");
   });
 
   it("omits the address entirely while it is still a placeholder", () => {
@@ -79,5 +89,13 @@ describe("Google Tag Manager ID", () => {
     expect(isValidGtmId(" GTM-5TRM8RB5 ")).toBe(true);
     for (const bad of ["", "G-ABC123", "GTM-", "gtm-5trm8rb5", "GTM-5TRM8RB5'><script>", undefined]) expect(isValidGtmId(bad)).toBe(false);
     expect(isValidGtmId(defaultContent.seo.gtmId)).toBe(true);
+  });
+});
+
+describe("Microsoft Clarity ID", () => {
+  it("accepts real project IDs and rejects code injection", () => {
+    expect(isValidClarityId("zkl7w0kegr")).toBe(true);
+    for (const bad of ["", "ZKL7W0KEGR", 'zkl7w0kegr");alert(1)//', "a b c d e f", undefined]) expect(isValidClarityId(bad)).toBe(false);
+    expect(isValidClarityId(defaultContent.seo.clarityId)).toBe(true);
   });
 });

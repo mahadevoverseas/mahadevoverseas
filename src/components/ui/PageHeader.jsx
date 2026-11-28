@@ -22,11 +22,9 @@ export default function PageHeader({ page, eyebrow, title, text, image = "/frame
       if (prefersReducedMotion()) return;
       const el = ref.current;
       const words = el.querySelectorAll("[data-ph-word]");
-      gsap.set(words, { yPercent: 110 });
-      gsap.set(el.querySelectorAll("[data-ph-fade]"), { autoAlpha: 0, y: 20 });
       const off = onIntro(() => {
-        gsap.to(words, { yPercent: 0, duration: 1.2, ease: "expo.out", stagger: 0.06 });
-        gsap.to(el.querySelectorAll("[data-ph-fade]"), { autoAlpha: 1, y: 0, duration: 0.9, ease: "power3.out", stagger: 0.1, delay: 0.25 });
+        gsap.from(words, { yPercent: 110, duration: 1.2, ease: "expo.out", stagger: 0.06 });
+        gsap.from(el.querySelectorAll("[data-ph-fade]"), { autoAlpha: 0, y: 20, duration: 0.9, ease: "power3.out", stagger: 0.1, delay: 0.25 });
       });
       gsap.to(el.querySelector("[data-ph-bg]"), {
         yPercent: 18,

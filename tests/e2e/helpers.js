@@ -3,7 +3,7 @@ import fs from "fs";
 
 export const ADMIN_PASSWORD = "e2e-test-password";
 
-export const PAGES = ["/", "/countries", "/countries/canada", "/services", "/journey", "/success-stories", "/gallery", "/about", "/eligibility", "/contact"];
+export const PAGES = ["/", "/countries", "/countries/canada", "/services", "/journey", "/success-stories", "/gallery", "/guides", "/guides/how-to-choose-study-visa-consultant-guntur", "/about", "/eligibility", "/contact"];
 
 /** Open a page and wait for the intro loader to leave. */
 export async function open(page, path) {

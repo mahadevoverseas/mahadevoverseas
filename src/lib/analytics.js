@@ -11,3 +11,5 @@ export function track(event, params = {}) {
 }
 
 export const isValidGtmId = (id) => /^GTM-[A-Z0-9]{4,12}$/.test(String(id ?? "").trim());
+
+export const isValidClarityId = (id) => /^[a-z0-9]{6,20}$/.test(String(id ?? "").trim());

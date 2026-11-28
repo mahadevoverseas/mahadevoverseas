@@ -82,7 +82,7 @@ export default function Navbar() {
       >
         <nav aria-label="Main" className="mx-auto flex h-18 max-w-[1440px] items-center justify-between gap-6 px-5 md:h-20 md:px-10">
           <Link href="/" className="shrink-0" aria-label="Mahadev Overseas — home">
-            <Image src="/brand/logo-on-dark.png" alt="Mahadev Overseas" width={1417} height={832} priority className="h-11 w-auto md:h-13" />
+            <Image src="/brand/logo-on-dark.png" alt="Mahadev Overseas" width={1417} height={832} priority sizes="120px" className="h-11 w-auto md:h-13" />
           </Link>
 
           <ul className="hidden items-center gap-7 xl:flex">

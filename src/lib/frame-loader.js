@@ -1,21 +1,29 @@
 "use client";
 
 /**
- * Loads an image sequence in a smart order:
- *  1. the first `priority` frames (so the sequence can start immediately)
- *  2. then progressively finer passes (every 8th, 4th, 2nd, then all) so a
- *     fast scroll always has a nearby frame to show.
+ * Loads an image sequence without hurting page-load speed:
+ *  1. only the first `priority` frames download right away;
+ *  2. the rest download after the page has finished loading and the browser
+ *     is idle, in progressively finer passes (every 8th, 4th, 2nd, then all)
+ *     so a fast scroll always has a nearby frame;
+ *  3. frames are decoded only when they are about to be shown (`warm`), never
+ *     all at once — decoding hundreds of frames during load blocked the page.
  *
- * Performance: drawing a WebP the browser hasn't decoded yet blocks the main
- * thread (~12 ms for a 1920px frame), and browsers throw decoded frames away
- * under memory pressure. So we:
- *  - decode frames *ahead* of the scroll position off the main thread (`warm`)
- *  - only ever draw frames we know are decoded (`nearestReady`), falling back
- *    to the closest ready frame for an instant instead of stalling.
+ * Drawing a frame that isn't decoded yet blocks the main thread (~12 ms at
+ * 1920px), so `nearestReady` only returns frames known to be decoded.
  */
 const READY_TTL = 6000; // ms a decoded frame is trusted to still be decoded
 
-export function createFrameLoader({ count, src, priority = 30, concurrency = 6, onFrame, onPriorityProgress }) {
+/** Resolves once the page has loaded and the browser has a quiet moment. */
+function whenPageIdle() {
+  return new Promise((resolve) => {
+    const idle = () => (window.requestIdleCallback ? requestIdleCallback(() => resolve(), { timeout: 2000 }) : setTimeout(resolve, 300));
+    if (document.readyState === "complete") idle();
+    else window.addEventListener("load", idle, { once: true });
+  });
+}
+
+export function createFrameLoader({ count, src, priority = 12, concurrency = 6, onFrame, onPriorityProgress }) {
   const images = new Array(count).fill(null);
   const readyAt = new Float64Array(count); // last time frame i was known-decoded
   const decoding = new Uint8Array(count);
@@ -36,6 +44,7 @@ export function createFrameLoader({ count, src, priority = 30, concurrency = 6, 
   let priorityLoaded = 0;
   let aborted = false;
   let started = false;
+  let bulkAllowed = false;
 
   const markReady = (i) => {
     readyAt[i] = performance.now();
@@ -58,17 +67,18 @@ export function createFrameLoader({ count, src, priority = 30, concurrency = 6, 
 
   const pump = () => {
     while (!aborted && active < concurrency && cursor < order.length) {
+      if (cursor >= firstN && !bulkAllowed) return; // wait for page load + idle
       const i = order[cursor++];
       active++;
       const img = new Image();
       img.decoding = "async";
       if (i < firstN) img.fetchPriority = "high";
+      else img.fetchPriority = "low";
       const finish = (ok) => {
         active--;
         if (aborted) return;
         if (ok) {
-          images[i] = img;
-          markReady(i);
+          images[i] = img; // downloaded (compressed); decoded later on demand
           onFrame?.(i, img);
         }
         if (i < firstN) {
@@ -77,10 +87,7 @@ export function createFrameLoader({ count, src, priority = 30, concurrency = 6, 
         }
         pump();
       };
-      img.onload = () => {
-        if (img.decode) img.decode().then(() => finish(true), () => finish(true));
-        else finish(true);
-      };
+      img.onload = () => finish(true);
       img.onerror = () => finish(false);
       img.src = src(i);
     }
@@ -92,6 +99,10 @@ export function createFrameLoader({ count, src, priority = 30, concurrency = 6, 
       if (started) return;
       started = true;
       pump();
+      whenPageIdle().then(() => {
+        bulkAllowed = true;
+        pump();
+      });
     },
     abort() {
       aborted = true;
@@ -102,9 +113,9 @@ export function createFrameLoader({ count, src, priority = 30, concurrency = 6, 
     },
     /** Decode frames around `i`, mostly in the scroll direction, off the main thread. */
     warm(i, dir = 1, ahead = 18, behind = 4) {
+      decode(i);
       for (let k = 1; k <= ahead; k++) decode(i + dir * k);
       for (let k = 1; k <= behind; k++) decode(i - dir * k);
-      decode(i);
     },
     /** Closest frame to `i` that can be drawn without blocking (prefers the exact one). */
     nearestReady(i) {
@@ -113,12 +124,7 @@ export function createFrameLoader({ count, src, priority = 30, concurrency = 6, 
         if (i - d >= 0 && isReady(i - d)) return i - d;
         if (i + d < count && isReady(i + d)) return i + d;
       }
-      // Nothing known-decoded: fall back to any loaded frame (may block once).
-      for (let d = 0; d < count; d++) {
-        if (i - d >= 0 && images[i - d]) return i - d;
-        if (i + d < count && images[i + d]) return i + d;
-      }
-      return -1;
+      return -1; // nothing decoded yet — keep showing the poster
     },
   };
 }

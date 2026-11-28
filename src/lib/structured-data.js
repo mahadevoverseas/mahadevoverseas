@@ -46,6 +46,9 @@ export function organizationGraph({ site, contact, countries = [], services, own
     ? { "@type": "PostalAddress", streetAddress: a.street, addressLocality: a.locality, addressRegion: real(a.region), postalCode: real(a.postalCode), addressCountry: a.country || "IN" }
     : undefined;
   const socials = (contact.socials ?? []).map((s) => s.href).filter((h) => h && !/^https?:\/\/(www\.)?[a-z]+\.com\/?$/i.test(h)); // drop bare placeholders like https://facebook.com/
+  // The Google Business Profile link ties this website to the Maps listing.
+  const gbp = /^https:\/\//.test(contact.googleBusinessUrl ?? "") ? contact.googleBusinessUrl : undefined;
+  if (gbp) socials.unshift(gbp);
   const hasOwner = real(owner?.name);
   const city = real(site.city);
 
@@ -53,6 +56,7 @@ export function organizationGraph({ site, contact, countries = [], services, own
     "@type": ["EducationalOrganization", "LocalBusiness", "ProfessionalService"],
     "@id": `${url}/#organization`,
     name: site.name,
+    alternateName: [city && `${site.name} ${city}`, `${site.name} study visa consultants`, site.shortName].filter(Boolean),
     url,
     logo: `${url}/brand/logo-on-light.png`,
     image: `${url}/og-image.jpg`,
@@ -62,7 +66,7 @@ export function organizationGraph({ site, contact, countries = [], services, own
     email: real(contact.email),
     address,
     geo: contact.geo?.lat ? { "@type": "GeoCoordinates", latitude: contact.geo.lat, longitude: contact.geo.lng } : undefined,
-    hasMap: real(contact.mapQuery) ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(contact.mapQuery)}` : undefined,
+    hasMap: gbp ?? (real(contact.mapQuery) ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(contact.mapQuery)}` : undefined),
     openingHoursSpecification: openingHours(contact.hours),
     priceRange: "Free counselling",
     currenciesAccepted: "INR",
@@ -78,7 +82,16 @@ export function organizationGraph({ site, contact, countries = [], services, own
     sameAs: socials.length ? socials : undefined,
     founder: hasOwner ? { "@type": "Person", name: owner.name, jobTitle: owner.role, ...(owner.photo?.startsWith("http") && { image: owner.photo }) } : undefined,
   };
-  const website = { "@type": "WebSite", "@id": `${url}/#website`, url, name: site.name, inLanguage: "en-IN", publisher: { "@id": `${url}/#organization` } };
+  // name + alternateName tell Google which site name to show for brand searches.
+  const website = {
+    "@type": "WebSite",
+    "@id": `${url}/#website`,
+    url,
+    name: site.name,
+    alternateName: [city && `${site.name} ${city}`, site.shortName].filter(Boolean),
+    inLanguage: "en-IN",
+    publisher: { "@id": `${url}/#organization` },
+  };
   return { "@context": "https://schema.org", "@graph": [website, JSON.parse(JSON.stringify(org))] };
 }
 
@@ -102,3 +115,26 @@ export function faqPage(items, vars) {
 }
 
 export const jsonLdString = (data) => JSON.stringify(data).replace(/</g, "\\u003c");
+
+/** schema.org Article for a guide page. */
+export function articleSchema({ site, guide, path }) {
+  const url = site.url.replace(/\/$/, "");
+  const image = guide.cover ? (guide.cover.startsWith("http") ? guide.cover : `${url}${guide.cover}`) : `${url}/og-image.jpg`;
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: guide.seoTitle || guide.title,
+    description: guide.metaDescription || guide.excerpt,
+    image,
+    datePublished: guide.date,
+    dateModified: guide.updated || guide.date,
+    author: { "@type": "Organization", name: guide.author || site.name, url },
+    publisher: { "@id": `${url}/#organization` },
+    mainEntityOfPage: `${url}${path}`,
+    inLanguage: "en-IN",
+  };
+}
+
+/** Published guides only, newest first. */
+export const publishedGuides = (guides) =>
+  (guides?.items ?? []).filter((g) => g.published && g.slug && !isPlaceholder(g.title)).sort((a, b) => String(b.date).localeCompare(String(a.date)));

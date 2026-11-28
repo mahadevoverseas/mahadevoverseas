@@ -11,9 +11,9 @@ const SeoContext = createContext(false);
 
 const LONG_KEYS = new Set([
   "paragraph", "text", "quote", "description", "blurb", "legal", "disclaimer", "intro", "work",
-  "footnote", "note", "message", "whatsappMessage", "overview", "successMessage", "bio",
+  "footnote", "note", "message", "whatsappMessage", "overview", "successMessage", "bio", "body", "excerpt", "metaDescription",
 ]);
-const IMAGE_KEYS = new Set(["photo", "logo", "image"]);
+const IMAGE_KEYS = new Set(["photo", "logo", "image", "cover"]);
 
 const HINTS = {
   flag: "2-letter country code used for the flag image (e.g. ca, gb, au).",
@@ -33,6 +33,17 @@ const HINTS = {
   video: "Optional MP4/WebM video (max 100 MB). When set, the tile plays this video; the image is used as its cover.",
   category: "Used for the filter buttons on the gallery page.",
   gtmId: "Google Tag Manager container ID, e.g. GTM-5TRM8RB5. Leave empty to turn tracking off. Loads only on the live site.",
+  slug: "The guide's web address: /guides/<slug>. Lowercase words joined by hyphens, e.g. study-in-canada-cost. Don't change it after publishing.",
+  published: "Off = draft (hidden). Turn on only when the facts are checked.",
+  body: "One box per block. Start a box with '## ' for a heading or '- ' for a bullet point; *text* in asterisks becomes italic. {city} is filled in.",
+  seoTitle: "Google title for this guide — up to 60 characters.",
+  metaDescription: "Google description — 140 to 160 characters.",
+  date: "Publish date as YYYY-MM-DD.",
+  cover: "Wide image (16:9) shown on the guide card and at the top of the guide.",
+  googleBusinessUrl: "Your Google Business Profile link — Google Maps → your business → Share → Copy link. Helps Google connect this website to your Maps listing.",
+  googleReviewUrl: "Your Google review link: Google Business Profile → Ask for reviews → copy link (https://g.page/r/…/review). Shows a 'Review us on Google' button on the Contact page and footer.",
+  seoHeading: "The page's main heading for Google — keep the service and city in it, e.g. Study visa consultants in {city}.",
+  clarityId: "Microsoft Clarity project ID (heatmaps & session recordings), e.g. zkl7w0kegr. Leave empty to turn it off.",
   googleVerification: "From Google Search Console → Add property → HTML tag: paste only the content=\"…\" code.",
   bingVerification: "From Bing Webmaster Tools → HTML meta tag: paste only the content code.",
   pages: "Google listing for each page. Title: up to 60 characters. Description: up to 160. {city}, {name} and (on country pages) {country} are filled in automatically.",

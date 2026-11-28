@@ -62,7 +62,9 @@
         "icon": "linkedin",
         "href": "https://linkedin.com/"
       }
-    ]
+    ],
+    "googleReviewUrl": "",
+    "googleBusinessUrl": ""
   },
   "nav": [
     {
@@ -157,6 +159,7 @@
     }
   },
   "hero": {
+    "seoHeading": "Study visa consultants in {city}",
     "eyebrow": "We deal in study visas",
     "lineOne": "Your future",
     "lineTwo": "has a flight path",
@@ -1018,12 +1021,13 @@
     "ctaHref": "/contact"
   },
   "seo": {
-    "gtmId": "GTM-5TRM8RB5",
+    "gtmId": "GTM-TBXNNR5K",
+    "clarityId": "zkl7w0kegr",
     "googleVerification": "",
     "bingVerification": "",
     "pages": {
       "home": {
-        "title": "Study Visa Consultants in {city} | Mahadev Overseas",
+        "title": "Mahadev Overseas | Study Visa Consultants in {city}",
         "description": "Study abroad & student visa consultants in {city}. Free counselling for Canada, UK, Australia, USA, Germany, Ireland & NZ: admissions, visas, IELTS, loans."
       },
       "countries": {
@@ -1061,6 +1065,10 @@
       "contact": {
         "title": "Contact Mahadev Overseas {city} | Free Counselling",
         "description": "Visit, call or WhatsApp Mahadev Overseas in {city} for free study abroad counselling. Office hours, address, map and enquiry form."
+      },
+      "guides": {
+        "title": "Study Abroad Guides for Students | Mahadev Overseas",
+        "description": "Practical study abroad guides from our {city} counselling team: choosing a consultant, intake timelines, education loans, visas and more."
       }
     }
   },
@@ -1100,6 +1108,139 @@
       {
         "q": "Where is your office in {city}?",
         "a": "Our office is in Sakethapuram, {city} — see the Contact page for the full address, map, phone number and office hours."
+      }
+    ]
+  },
+  "guides": {
+    "eyebrow": "Study abroad guides",
+    "title": "Guides for students and parents",
+    "intro": "Straight answers to the questions families in {city} ask us most — written by our counselling team.",
+    "items": [
+      {
+        "slug": "how-to-choose-study-visa-consultant-guntur",
+        "title": "How to choose a study visa consultant in Guntur: 8 questions to ask",
+        "seoTitle": "Choosing a Study Visa Consultant in Guntur",
+        "metaDescription": "Choosing a study abroad consultant in Guntur? Ask these 8 questions about fees, honesty, visa files and support before you sign up with anyone.",
+        "excerpt": "A good consultant can save you a year and lakhs of rupees; a bad one can cost you both. Here is what to ask before you sign up.",
+        "cover": "/frames/hero/frame_0300.webp",
+        "author": "Mahadev Overseas counselling team",
+        "date": "2026-11-28",
+        "published": true,
+        "body": [
+          "Every year thousands of students from Guntur and across Andhra Pradesh apply to universities abroad, and most of them work with a consultant. The right one makes the process calmer and your file stronger. The wrong one can push you towards the wrong course, the wrong country or an incomplete visa file. Before you pay anyone, ask these eight questions.",
+          "## 1. Do they recommend options based on your profile — or on their commissions?",
+          "Ask why a particular university or country suits *you*: your marks, your English test score, your budget and your career plan. If every student seems to be sent to the same few institutions, be careful.",
+          "## 2. Do they promise a visa?",
+          "No consultant can promise a student visa — the decision is made only by the embassy or immigration authority. Anyone who says approval is certain is either misinformed or not being honest with you. A good consultant talks about how they strengthen your file, not about promises.",
+          "## 3. What exactly is included in the fee?",
+          "Get the services and fees in writing. Check whether university applications, SOP and LOR help, visa filing, interview practice and pre-departure support are included, and whether any amount is refundable.",
+          "## 4. Who will actually handle your file?",
+          "Ask who your counsellor will be, how often you will hear from them, and how quickly they reply on phone or WhatsApp — especially close to deadlines.",
+          "## 5. How do they check your documents?",
+          "Visa refusals often come from small mistakes: mismatched names, missing financial proof, unexplained study gaps. Ask how many times your documents are checked before submission and by whom.",
+          "## 6. Can they help with IELTS/PTE and education loans?",
+          "Having test preparation and loan guidance in one place saves time. Ask about batch sizes and mock tests for coaching, and which banks and NBFCs they work with for loans.",
+          "## 7. Can you speak to past students?",
+          "Ask for real success stories and, where possible, a chance to speak to students or parents they have helped. Read their Google reviews too.",
+          "## 8. Will they support you after the visa?",
+          "Accommodation, travel, forex, and what to do in your first week abroad matter. Good consultants stay in touch after you land.",
+          "## The short version",
+          "- Choose honesty over promises.",
+          "- Get the fee and services in writing.",
+          "- Make sure one person owns your file and replies quickly.",
+          "- Look for real reviews and real students.",
+          "If you'd like a no-pressure first conversation, our counselling session in {city} is free."
+        ]
+      },
+      {
+        "slug": "study-abroad-timeline-september-intake",
+        "title": "Study abroad timeline: what to do in the 12 months before a September intake",
+        "seoTitle": "Study Abroad Timeline: September Intake",
+        "metaDescription": "Planning to study abroad in September? A month-by-month checklist: shortlisting, IELTS/PTE, applications, offer letters, loans, visa and pre-departure.",
+        "excerpt": "Starting early is the single biggest advantage you can give yourself. Here is a realistic month-by-month plan.",
+        "cover": "/frames/journey/frame_0300.webp",
+        "author": "Mahadev Overseas counselling team",
+        "date": "2026-11-28",
+        "published": true,
+        "body": [
+          "The September (fall) intake is the most popular for Canada, the UK, the USA, Ireland and many other destinations. Deadlines differ by country and university, so use this as a general plan and confirm exact dates for your shortlist.",
+          "## 10–12 months before: decide and shortlist",
+          "- Book a counselling session to match countries and courses to your marks, budget and goals.",
+          "- Check entry requirements, tuition and living costs for 6–10 universities.",
+          "- Start gathering transcripts, mark sheets and identity documents.",
+          "## 8–10 months before: English test",
+          "- Prepare for IELTS or PTE and book your test date, leaving time for a retake if needed.",
+          "- Ask teachers or employers early about recommendation letters (LORs).",
+          "## 6–9 months before: applications",
+          "- Write and polish your statement of purpose (SOP).",
+          "- Submit applications before the deadlines — earlier applications often get faster decisions.",
+          "## 4–6 months before: offers and funding",
+          "- Compare offer letters and accept the best fit.",
+          "- Arrange funds: savings, sponsors, and education loans — banks need time to process.",
+          "- Pay any deposit required to secure your place.",
+          "## 2–4 months before: visa",
+          "- Prepare your visa file carefully: financial documents, offer letter, test scores and any other requirements of your destination country.",
+          "- Book biometrics or appointments early in peak season and practise for any interview.",
+          "## Final month: pre-departure",
+          "- Book accommodation and flights, arrange forex and a travel card.",
+          "- Attend a pre-departure briefing and pack the documents you'll need on arrival.",
+          "Running late? Talk to us anyway — we'll tell you honestly whether this intake is realistic or whether the next one is the better choice."
+        ]
+      },
+      {
+        "slug": "education-loan-documents-checklist",
+        "title": "Education loan for studying abroad: the documents checklist",
+        "seoTitle": "Study Abroad Education Loan Documents",
+        "metaDescription": "Applying for a study abroad education loan in India? A checklist of the documents banks and NBFCs usually ask for — student, co-applicant and collateral.",
+        "excerpt": "Most loan delays come from missing paperwork. Here is what banks and NBFCs usually ask for, so you can prepare in advance.",
+        "cover": "/frames/burst/frame_0300.webp",
+        "author": "Mahadev Overseas counselling team",
+        "date": "2026-11-28",
+        "published": true,
+        "body": [
+          "Education loans for studying abroad are offered by public and private banks and by NBFCs. Each lender sets its own rules, but the documents below are what they most commonly ask for. Confirm the final list with your lender.",
+          "## Student documents",
+          "- Admission or offer letter from the university",
+          "- Fee structure and estimated cost of study and living",
+          "- Passport, PAN card, Aadhaar and photographs",
+          "- 10th, 12th and degree mark sheets and certificates",
+          "- English test scorecard (IELTS / PTE / TOEFL) and any other required test scores",
+          "## Co-applicant documents (usually a parent or guardian)",
+          "- PAN card, Aadhaar and address proof",
+          "- Income proof: salary slips and Form 16, or ITRs for the self-employed",
+          "- Bank statements, typically for the last 6 months",
+          "## For secured loans (with collateral)",
+          "- Property documents: title deed, approved plan, tax receipts",
+          "- Valuation and legal reports, usually arranged through the lender",
+          "## Tips that speed things up",
+          "- Apply as soon as you have an offer letter — sanction can take a few weeks.",
+          "- Keep names and dates of birth identical across all documents.",
+          "- Compare interest rates, processing fees, moratorium period and repayment terms, not just the loan amount.",
+          "Collateral-free options may be available for eligible students and courses. Loan approval, amount and interest rate are always decided by the bank or NBFC.",
+          "We compare offers from partner banks and NBFCs and help with the paperwork until sanction — ask us during your free counselling session in {city}."
+        ]
+      },
+      {
+        "slug": "cost-of-studying-in-canada-from-india",
+        "title": "[DRAFT] Cost of studying in Canada from India",
+        "seoTitle": "Cost of Studying in Canada from India",
+        "metaDescription": "[Write a 140–160 character summary once the figures are verified.]",
+        "excerpt": "[Summary of tuition, living costs and the proof of funds needed for a Canadian study permit.]",
+        "cover": "/frames/hero/frame_0420.webp",
+        "author": "Mahadev Overseas counselling team",
+        "date": "2026-11-28",
+        "published": false,
+        "body": [
+          "[DRAFT — not published. Add current, verified figures from official sources (IRCC and university websites) before publishing.]",
+          "## Tuition fees",
+          "[Typical ranges for diplomas, undergraduate and postgraduate programs.]",
+          "## Living costs and proof of funds",
+          "[Current proof-of-funds requirement for a study permit, plus realistic monthly living costs.]",
+          "## Other costs",
+          "- [Application fees]",
+          "- [Study permit and biometrics fees]",
+          "- [Health insurance, travel, initial accommodation]"
+        ]
       }
     ]
   }

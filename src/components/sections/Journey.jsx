@@ -7,6 +7,7 @@ import { PlaneGlyph } from "@/components/ui/icons";
 import SplitReveal from "@/components/ui/SplitReveal";
 import Reveal from "@/components/ui/Reveal";
 import FilmScene from "@/components/ui/FilmScene";
+import DecoNum from "@/components/ui/DecoNum";
 
 function JourneyFilm() {
   const { journey } = useSite();
@@ -34,9 +35,7 @@ function StepCard({ step, i, horizontal }) {
         horizontal ? "w-[34vw] max-w-[520px] shrink-0 p-8 xl:p-10" : "p-6"
       }`}
     >
-      <span className="font-display block text-6xl text-white/10 transition-colors duration-500 group-data-[active=true]:text-brand-red md:text-7xl">
-        {String(i + 1).padStart(2, "0")}
-      </span>
+      <DecoNum n={i + 1} className="font-display block text-6xl text-white/10 transition-colors duration-500 group-data-[active=true]:text-brand-red md:text-7xl" />
       <h3 className="font-display mt-4 text-3xl text-ink md:text-4xl">{step.title}</h3>
       <p className="mt-3 text-sm leading-relaxed text-muted md:text-base">{step.text}</p>
     </article>

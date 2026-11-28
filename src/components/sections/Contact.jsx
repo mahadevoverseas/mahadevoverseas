@@ -6,7 +6,7 @@ import { useSite } from "@/components/providers/ContentProvider";
 import { whatsappLink } from "@/lib/site";
 import { submitEnquiry, PHONE_RE, EMAIL_RE } from "@/lib/submit-enquiry";
 import { track } from "@/lib/analytics";
-import { WhatsAppIcon } from "@/components/ui/icons";
+import { WhatsAppIcon, GoogleIcon } from "@/components/ui/icons";
 import SplitReveal from "@/components/ui/SplitReveal";
 import Magnetic from "@/components/ui/Magnetic";
 import Reveal from "@/components/ui/Reveal";
@@ -74,7 +74,7 @@ export default function Contact() {
 
           <div className="mt-10 flex flex-wrap gap-3">
             <Magnetic>
-              <a href={whatsappLink(contact)} target="_blank" rel="noopener noreferrer" className="btn bg-[#1DA851] text-white hover:bg-[#25D366]">
+              <a href={whatsappLink(contact)} target="_blank" rel="noopener noreferrer" className="btn bg-[#0F7A3D] text-white hover:bg-[#0B6E36]">
                 <WhatsAppIcon className="size-5" /> Chat on WhatsApp
               </a>
             </Magnetic>
@@ -84,6 +84,17 @@ export default function Contact() {
               </a>
             </Magnetic>
           </div>
+
+          {/^https:\/\//.test(contact.googleReviewUrl ?? "") && (
+            <a
+              href={contact.googleReviewUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 inline-flex items-center gap-2 rounded-[10px] bg-white px-4 py-2.5 text-sm font-bold text-navy shadow hover:bg-mist"
+            >
+              <GoogleIcon className="size-4" /> Studied abroad with us? Review us on Google
+            </a>
+          )}
 
           <Reveal as="ul" className="mt-12 grid gap-6 text-sm">
             <li className="flex gap-4">
