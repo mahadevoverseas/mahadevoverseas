@@ -2,6 +2,8 @@ import { notFound } from "next/navigation";
 import { getContent } from "@/lib/content";
 import CountryDetail from "@/components/sections/CountryDetail";
 import CtaBand from "@/components/ui/CtaBand";
+import PageSchema from "@/components/PageSchema";
+import { pageMetadata } from "@/lib/seo";
 
 // Check the country before rendering the page body. In production the shared
 // layout has already streamed (HTTP 200), so unknown ids show the branded
@@ -18,15 +20,17 @@ export async function generateMetadata({ params }) {
   const { countries } = await getContent();
   const c = countries.find((x) => x.id === id);
   if (!c) return {};
-  return { title: `Study in ${c.name}`, description: `${c.overview ?? ""} Intakes: ${c.intakes.join(", ")}. Tuition: ${c.tuition}.`.trim() };
+  return pageMetadata("country", `/countries/${c.id}`, { country: c.name });
 }
 
 export default async function CountryPage({ params }) {
   const { id } = await params;
   const { countries } = await getContent();
-  if (!countries.some((c) => c.id === id)) notFound();
+  const c = countries.find((x) => x.id === id);
+  if (!c) notFound();
   return (
     <>
+      <PageSchema trail={[{ name: "Study destinations", path: "/countries" }, { name: `Study in ${c.name}`, path: `/countries/${c.id}` }]} />
       <CountryDetail id={id} />
       <CtaBand />
     </>

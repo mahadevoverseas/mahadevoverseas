@@ -1,3 +1,4 @@
+import { pageMetadata } from "@/lib/seo";
 import Hero from "@/components/sections/Hero";
 import Stats from "@/components/sections/Stats";
 import About from "@/components/sections/About";
@@ -7,6 +8,11 @@ import Stories from "@/components/sections/Stories";
 import Universities from "@/components/sections/Universities";
 import Testimonials from "@/components/sections/Testimonials";
 import CtaBand from "@/components/ui/CtaBand";
+import Faq from "@/components/sections/Faq";
+
+export async function generateMetadata() {
+  return pageMetadata("home", "/");
+}
 
 export default function Home() {
   return (
@@ -19,6 +25,7 @@ export default function Home() {
       <Stories />
       <Universities />
       <Testimonials />
+      <Faq />
       <CtaBand />
     </>
   );

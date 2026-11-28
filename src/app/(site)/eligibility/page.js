@@ -1,11 +1,17 @@
+import { pageMetadata } from "@/lib/seo";
+import PageSchema from "@/components/PageSchema";
 import PageHeader from "@/components/ui/PageHeader";
 import Eligibility from "@/components/sections/Eligibility";
 
-export const metadata = { title: "Eligibility Checker", description: "Answer four quick questions to see which study-abroad countries may suit your profile. Guidance only, not a guarantee." };
+
+export async function generateMetadata() {
+  return pageMetadata("eligibility", "/eligibility");
+}
 
 export default function EligibilityPage() {
   return (
     <>
+      <PageSchema trail={[{ name: "Eligibility checker", path: "/eligibility" }]} />
       <PageHeader page="eligibility" image="/frames/hero/frame_0200.webp" />
       <Eligibility />
     </>

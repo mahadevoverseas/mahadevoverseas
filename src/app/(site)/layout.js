@@ -7,6 +7,7 @@ import WhatsAppFloat from "@/components/ui/WhatsAppFloat";
 import Navbar from "@/components/sections/Navbar";
 import Footer from "@/components/sections/Footer";
 import JsonLd from "@/components/JsonLd";
+import { organizationGraph } from "@/lib/structured-data";
 
 export default async function SiteLayout({ children }) {
   const content = await getContent();
@@ -15,7 +16,7 @@ export default async function SiteLayout({ children }) {
       <noscript>
         <style>{`html.is-loading,html.is-loading body{overflow:auto!important}#mo-loader{display:none!important}`}</style>
       </noscript>
-      <JsonLd content={content} />
+      <JsonLd data={organizationGraph(content)} />
       <SmoothScroll />
       <Loader />
       <Cursor />

@@ -1,10 +1,13 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { createContext, useContext, useRef, useState } from "react";
 import { ChevronDown, ChevronUp, Copy, ImageUp, Loader2, Plus, Trash2 } from "lucide-react";
 import { SERVICE_ICON_NAMES, SERVICE_ICONS } from "@/lib/service-icons";
 
 /* ---------- helpers ---------- */
+
+// True inside the SEO section, where titles/descriptions get a length counter.
+const SeoContext = createContext(false);
 
 const LONG_KEYS = new Set([
   "paragraph", "text", "quote", "description", "blurb", "legal", "disclaimer", "intro", "work",
@@ -29,6 +32,11 @@ const HINTS = {
   enabled: "Show or hide this element.",
   video: "Optional MP4/WebM video (max 100 MB). When set, the tile plays this video; the image is used as its cover.",
   category: "Used for the filter buttons on the gallery page.",
+  googleVerification: "From Google Search Console → Add property → HTML tag: paste only the content=\"…\" code.",
+  bingVerification: "From Bing Webmaster Tools → HTML meta tag: paste only the content code.",
+  pages: "Google listing for each page. Title: up to 60 characters. Description: up to 160. {city}, {name} and (on country pages) {country} are filled in automatically.",
+  q: "The question, as a student would type it into Google.",
+  geo: "Exact office location — in Google Maps, right-click your office pin and copy the two numbers.",
   bio: "One box per paragraph. Write in the founder's own voice.",
   highlights: "Short facts shown as big numbers. Only use figures you can back up.",
   credentials: "Qualifications, trainings or memberships — only ones you can verify.",
@@ -141,6 +149,7 @@ function IconField({ value, onChange }) {
 }
 
 function Leaf({ k, value, onChange }) {
+  const inSeo = useContext(SeoContext);
   if (typeof value === "boolean") {
     return (
       <label className="inline-flex items-center gap-2 text-sm font-semibold">
@@ -164,6 +173,24 @@ function Leaf({ k, value, onChange }) {
     );
   }
   const str = value ?? "";
+  const limit = { title: 60, description: 160 }[k];
+  if (limit && inSeo) {
+    const len = str.replace(/\{city\}/g, "Guntur").replace(/\{country\}/g, "New Zealand").replace(/\{name\}/g, "Mahadev Overseas").length;
+    const over = len > limit;
+    const field = k === "description" ? (
+      <textarea rows={3} className={`${inputCls} resize-y leading-relaxed`} value={str} onChange={(e) => onChange(e.target.value)} />
+    ) : (
+      <input className={inputCls} value={str} onChange={(e) => onChange(e.target.value)} />
+    );
+    return (
+      <div>
+        {field}
+        <p className={`mt-1 text-right text-xs font-semibold ${over ? "text-red-strong" : "text-navy/45"}`}>
+          ~{len} / {limit} characters{over ? " — Google will cut this off" : ""}
+        </p>
+      </div>
+    );
+  }
   if (LONG_KEYS.has(k) || str.length > 90) {
     return <textarea rows={Math.min(8, Math.max(3, Math.ceil(str.length / 90)))} className={`${inputCls} resize-y leading-relaxed`} value={str} onChange={(e) => onChange(e.target.value)} />;
   }
@@ -303,6 +330,17 @@ function ObjectFields({ value, onChange, template }) {
 }
 
 export function Field({ k, value, onChange, template, label }) {
+  if (k === "seo") {
+    return (
+      <SeoContext value={true}>
+        <FieldInner k={k} value={value} onChange={onChange} template={template} label={label} />
+      </SeoContext>
+    );
+  }
+  return <FieldInner k={k} value={value} onChange={onChange} template={template} label={label} />;
+}
+
+function FieldInner({ k, value, onChange, template, label }) {
   const isObj = value && typeof value === "object" && !Array.isArray(value);
   const isArr = Array.isArray(value);
   return (

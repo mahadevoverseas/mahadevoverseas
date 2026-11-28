@@ -1,11 +1,17 @@
+import { pageMetadata } from "@/lib/seo";
+import PageSchema from "@/components/PageSchema";
 import Journey from "@/components/sections/Journey";
 import CtaBand from "@/components/ui/CtaBand";
 
-export const metadata = { title: "Your Journey", description: "Six clear steps from free counselling to boarding your flight — see how Mahadev Overseas guides you." };
+
+export async function generateMetadata() {
+  return pageMetadata("journey", "/journey");
+}
 
 export default function JourneyPage() {
   return (
     <>
+      <PageSchema trail={[{ name: "Your journey", path: "/journey" }]} />
       <Journey />
       <CtaBand />
     </>

@@ -38,8 +38,8 @@
     ],
     "mapQuery": "Mahadev Overseas [CITY]",
     "geo": {
-      "lat": 17.385,
-      "lng": 78.4867
+      "lat": 16.3067,
+      "lng": 80.4365
     },
     "socials": [
       {
@@ -1016,5 +1016,90 @@
     "footnote": "*Subject to lender approval. Loan approval, amount and interest rate are decided solely by the bank or NBFC based on their eligibility criteria.",
     "ctaLabel": "Check my loan options",
     "ctaHref": "/contact"
+  },
+  "seo": {
+    "googleVerification": "",
+    "bingVerification": "",
+    "pages": {
+      "home": {
+        "title": "Study Visa Consultants in {city} | Mahadev Overseas",
+        "description": "Study abroad & student visa consultants in {city}. Free counselling for Canada, UK, Australia, USA, Germany, Ireland & NZ: admissions, visas, IELTS, loans."
+      },
+      "countries": {
+        "title": "Study Abroad Countries from {city} | Mahadev Overseas",
+        "description": "Compare Canada, UK, Australia, USA, Germany, Ireland & New Zealand: intakes, tuition, post-study work and top courses. Free counselling in {city}."
+      },
+      "country": {
+        "title": "Study in {country}: Fees & Intakes | Mahadev Overseas",
+        "description": "Study in {country} with Mahadev Overseas, {city}: intakes, tuition fees, post-study work rights, popular courses and student visa help. Book free counselling."
+      },
+      "services": {
+        "title": "Study Abroad Services in {city} | Mahadev Overseas",
+        "description": "Admissions, student visa filing, SOP & LOR, IELTS/PTE coaching, education loans, accommodation and pre-departure support — all under one roof in {city}."
+      },
+      "journey": {
+        "title": "How Studying Abroad Works: 6 Steps | Mahadev Overseas",
+        "description": "From free counselling and university shortlisting to IELTS, offer letter, visa file and pre-departure — see how Mahadev Overseas guides students from {city}."
+      },
+      "stories": {
+        "title": "Student Success Stories | Mahadev Overseas {city}",
+        "description": "Students from {city} and across Andhra Pradesh who are now studying abroad with guidance from Mahadev Overseas."
+      },
+      "gallery": {
+        "title": "Gallery: Campuses, Visas & Journeys | Mahadev Overseas",
+        "description": "Videos and photos from campuses, graduations, visa approvals and study-abroad journeys with Mahadev Overseas, {city}."
+      },
+      "about": {
+        "title": "About Mahadev Overseas: Study Abroad Experts, {city}",
+        "description": "Meet Mahadev Overseas — honest study abroad guidance in {city}, from first counselling to boarding your flight. Meet our founder and our university network."
+      },
+      "eligibility": {
+        "title": "Free Study Abroad Eligibility Checker | Mahadev Overseas",
+        "description": "Answer 4 quick questions about your qualification, marks, IELTS/PTE score and budget to see which countries may suit you. Free guidance from {city}."
+      },
+      "contact": {
+        "title": "Contact Mahadev Overseas {city} | Free Counselling",
+        "description": "Visit, call or WhatsApp Mahadev Overseas in {city} for free study abroad counselling. Office hours, address, map and enquiry form."
+      }
+    }
+  },
+  "faq": {
+    "eyebrow": "Questions, answered",
+    "title": "Study abroad from {city}: your questions",
+    "intro": "Mahadev Overseas is a study visa consultancy in {city}, Andhra Pradesh, guiding students to Canada, the UK, Australia, the USA, Germany, Ireland and New Zealand.",
+    "items": [
+      {
+        "q": "Why choose Mahadev Overseas as your study visa consultant in {city}?",
+        "a": "We give honest, profile-based advice — which countries and universities realistically fit your marks, test scores and budget — and one team handles everything from counselling to your visa file and pre-departure briefing."
+      },
+      {
+        "q": "Which countries can I study in through Mahadev Overseas?",
+        "a": "We guide students for Canada, the United Kingdom, Australia, the United States, Germany, Ireland and New Zealand, including admissions, student visas and post-arrival support."
+      },
+      {
+        "q": "Is the first counselling session really free?",
+        "a": "Yes. Your first counselling session is free, in person at our {city} office, by phone or on WhatsApp, with no obligation."
+      },
+      {
+        "q": "Do you provide IELTS and PTE coaching?",
+        "a": "Yes. We offer IELTS and PTE preparation with mock tests and personal feedback, so you can reach the score your universities and visa require."
+      },
+      {
+        "q": "Can you help me get an education loan?",
+        "a": "Yes. We compare offers from partner banks and NBFCs, help you choose, and handle the paperwork until sanction. Approval, amount and interest rate are always decided by the lender."
+      },
+      {
+        "q": "When should I start my application?",
+        "a": "Ideally 8–12 months before your intake. That leaves time for tests, applications, offer letters, finances and the visa. Late starters can still talk to us — we'll tell you honestly what's possible."
+      },
+      {
+        "q": "Do you guarantee a student visa?",
+        "a": "No honest consultant can. Visa decisions are made only by the embassy or immigration authority. What we do is prepare a complete, carefully checked file and train you for the interview to give you the best possible chance."
+      },
+      {
+        "q": "Where is your office in {city}?",
+        "a": "Our office is in Sakethapuram, {city} — see the Contact page for the full address, map, phone number and office hours."
+      }
+    ]
   }
 }

@@ -5,7 +5,7 @@ import Image from "next/image";
 import {
   BarChart3, BookOpen, Braces, Compass, ExternalLink, FileText, Footprints, Globe2, GraduationCap, Inbox,
   LayoutTemplate, Loader2, LogOut, Map, Menu, MessageSquareQuote, Navigation, Phone, RotateCcw, Save,
-  Settings, Sparkles, Ticket, X, CheckCircle2, AlertTriangle, ListChecks, Images, UserRound, HandCoins,
+  Settings, Sparkles, Ticket, X, CheckCircle2, AlertTriangle, ListChecks, Images, UserRound, HandCoins, Search, CircleHelp,
 } from "lucide-react";
 import { Field } from "./FieldEditor";
 import Enquiries from "./Enquiries";
@@ -13,7 +13,8 @@ import { saveSections, resetSections, logout } from "@/app/admin/actions";
 import { defaultContent } from "@/lib/site";
 
 const GROUPS = [
-  { id: "general", label: "General & SEO", icon: Settings, keys: ["site"], page: "/" },
+  { id: "general", label: "General", icon: Settings, keys: ["site"], page: "/" },
+  { id: "seo", label: "SEO (Google)", icon: Search, keys: ["seo"], page: "/" },
   { id: "contact", label: "Contact details", icon: Phone, keys: ["contact", "whatsappFloat"], page: "/contact" },
   { id: "navigation", label: "Menu & call-to-action", icon: Navigation, keys: ["nav", "cta", "ctaBand"], page: "/" },
   { id: "pages", label: "Page banners", icon: LayoutTemplate, keys: ["pages"], page: "/services" },
@@ -30,6 +31,7 @@ const GROUPS = [
   { id: "eligibility", label: "Eligibility checker", icon: ListChecks, keys: ["eligibility"], page: "/eligibility" },
   { id: "testimonials", label: "Testimonials", icon: MessageSquareQuote, keys: ["testimonials"], page: "/success-stories" },
   { id: "gallery", label: "Gallery", icon: Images, keys: ["gallery"], page: "/gallery" },
+  { id: "faq", label: "FAQ", icon: CircleHelp, keys: ["faq"], page: "/contact" },
   { id: "contactSection", label: "Contact page", icon: FileText, keys: ["contactSection"], page: "/contact" },
   { id: "footer", label: "Footer", icon: Footprints, keys: ["footer"], page: "/" },
 ];

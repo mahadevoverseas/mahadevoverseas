@@ -17,7 +17,7 @@ const montserrat = Montserrat({
 });
 
 export async function generateMetadata() {
-  const { site } = await getContent();
+  const { site, seo, contact } = await getContent();
   const title = `${site.name} — Study Visa Consultants in ${site.city}`;
   return {
     metadataBase: new URL(site.url),
@@ -38,17 +38,26 @@ export async function generateMetadata() {
       "PTE coaching",
       site.city,
     ],
-    alternates: { canonical: "/" },
+    // Each page sets its own canonical URL (see src/lib/seo.js).
     openGraph: {
       type: "website",
       locale: "en_IN",
-      url: "/",
       siteName: site.name,
       title,
       description: site.description,
       images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: `${site.name} — your future has a flight path` }],
     },
     twitter: { card: "summary_large_image", title, description: site.description, images: ["/og-image.jpg"] },
+    // Paste the codes from Google Search Console / Bing Webmaster in Admin → SEO.
+    verification: {
+      ...(seo?.googleVerification && { google: seo.googleVerification }),
+      ...(seo?.bingVerification && { other: { "msvalidate.01": seo.bingVerification } }),
+    },
+    other: {
+      "geo.region": "IN-AP",
+      ...(site.city && !site.city.includes("[") && { "geo.placename": site.city }),
+      ...(contact?.geo?.lat && { "geo.position": `${contact.geo.lat};${contact.geo.lng}`, ICBM: `${contact.geo.lat}, ${contact.geo.lng}` }),
+    },
   };
 }
 
